@@ -25,6 +25,13 @@ export const routes: Routes = [
           import('./allocations/allocations-page.routes').then((m) => m.routes)
       },
       {
+        path: 'custom-allocations',
+        loadChildren: () =>
+          import('./custom-allocations/custom-allocations-page.routes').then(
+            (m) => m.routes
+          )
+      },
+      {
         path: internalRoutes.portfolio.subRoutes.fire.path,
         loadChildren: () =>
           import('./fire/fire-page.routes').then((m) => m.routes)

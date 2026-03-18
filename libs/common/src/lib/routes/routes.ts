@@ -137,6 +137,11 @@ export const internalRoutes: Record<string, InternalRoute> = {
         routerLink: ['/portfolio'],
         title: $localize`Analysis`
       },
+      customAllocations: {
+        path: 'custom-allocations',
+        routerLink: ['/portfolio', 'custom-allocations'],
+        title: $localize`Custom Allocations`
+      },
       fire: {
         path: 'fire',
         routerLink: ['/portfolio', 'fire'],

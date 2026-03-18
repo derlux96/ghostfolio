@@ -746,6 +746,10 @@ export class DataService {
     return this.http.get<Tag[]>('/api/v1/tags');
   }
 
+  public fetchCustomAllocations(): Observable<CustomAllocationResponse> {
+    return this.http.get<CustomAllocationResponse>('/api/v1/allocation/custom');
+  }
+
   public fetchWatchlist() {
     return this.http.get<WatchlistResponse>('/api/v1/watchlist');
   }

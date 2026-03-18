@@ -49,6 +49,10 @@ import type { AssetResponse } from './responses/asset-response.interface';
 import type { BenchmarkMarketDataDetailsResponse } from './responses/benchmark-market-data-details-response.interface';
 import type { BenchmarkResponse } from './responses/benchmark-response.interface';
 import type { CreateStripeCheckoutSessionResponse } from './responses/create-stripe-checkout-session-response.interface';
+import type {
+  CustomAllocationResponse,
+  RebalancingAction
+} from './responses/custom-allocation-response.interface';
 import type { DataEnhancerHealthResponse } from './responses/data-enhancer-health-response.interface';
 import type { DataProviderGhostfolioAssetProfileResponse } from './responses/data-provider-ghostfolio-asset-profile-response.interface';
 import type { DataProviderGhostfolioStatusResponse } from './responses/data-provider-ghostfolio-status-response.interface';
@@ -129,6 +133,7 @@ export {
   BenchmarkResponse,
   Coupon,
   CreateStripeCheckoutSessionResponse,
+  CustomAllocationResponse,
   DataEnhancerHealthResponse,
   DataProviderGhostfolioAssetProfileResponse,
   DataProviderGhostfolioStatusResponse,
@@ -176,6 +181,7 @@ export {
   PublicKeyCredentialRequestOptionsJSON,
   PublicPortfolioResponse,
   QuotesResponse,
+  RebalancingAction,
   ResponseError,
   RuleSettings,
   ScraperConfiguration,

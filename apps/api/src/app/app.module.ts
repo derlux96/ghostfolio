@@ -31,6 +31,7 @@ import { AccessModule } from './access/access.module';
 import { AccountModule } from './account/account.module';
 import { ActivitiesModule } from './activities/activities.module';
 import { AdminModule } from './admin/admin.module';
+import { AllocationModule } from './allocation/allocation.module';
 import { AppController } from './app.controller';
 import { AssetModule } from './asset/asset.module';
 import { AuthDeviceModule } from './auth-device/auth-device.module';
@@ -63,11 +64,12 @@ import { UserModule } from './user/user.module';
 @Module({
   controllers: [AppController],
   imports: [
-    AdminModule,
     AccessModule,
     AccountModule,
     ActivitiesModule,
+    AdminModule,
     AiModule,
+    AllocationModule,
     ApiKeysModule,
     AssetModule,
     AssetsModule,

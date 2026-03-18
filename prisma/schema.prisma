@@ -248,11 +248,13 @@ model Subscription {
 }
 
 model Tag {
-  activities Order[]
-  id         String  @id @default(uuid())
-  name       String
-  user       User?   @relation(fields: [userId], onDelete: Cascade, references: [id])
-  userId     String?
+  activities       Order[]
+  color            String?
+  id               String  @id @default(uuid())
+  name             String
+  targetAllocation Float?  @default(0)
+  user             User?   @relation(fields: [userId], onDelete: Cascade, references: [id])
+  userId           String?
 
   @@unique([name, userId])
   @@index([name])

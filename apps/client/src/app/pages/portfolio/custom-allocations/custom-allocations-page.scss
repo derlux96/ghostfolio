@@ -1,0 +1,129 @@
+.allocation-summary {
+  margin-top: 1rem;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+
+  &.has-drift {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+
+  &:not(.has-drift) {
+    background-color: #d4edda;
+    color: #155724;
+  }
+}
+
+.allocation-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e0e0e0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .allocation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    .tag-name {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .allocation-values {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .separator {
+        color: #999;
+      }
+
+      .target {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .allocation-bar {
+    margin: 0.5rem 0;
+
+    .bar-background {
+      position: relative;
+      height: 24px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+
+      .bar-fill {
+        position: absolute;
+        height: 100%;
+        transition: width 0.3s ease;
+        opacity: 0.7;
+
+        &.current {
+          top: 0;
+          border-radius: 4px 0 0 4px;
+        }
+
+        &.target {
+          width: 2px !important;
+          border-radius: 1px;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .allocation-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+}
+
+.drift-neutral {
+  color: #28a745;
+}
+
+.drift-positive {
+  color: #ffc107;
+}
+
+.drift-negative {
+  color: #dc3545;
+}
+
+.buy-action {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.sell-action {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+table {
+  width: 100%;
+
+  th {
+    font-weight: 500;
+    color: #666;
+  }
+
+  td {
+    padding: 0.75rem 0.5rem;
+  }
+}

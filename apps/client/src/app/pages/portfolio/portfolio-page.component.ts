@@ -17,7 +17,8 @@ import {
   calculatorOutline,
   pieChartOutline,
   scanOutline,
-  swapVerticalOutline
+  swapVerticalOutline,
+  targetOutline
 } from 'ionicons/icons';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
@@ -62,6 +63,12 @@ export class PortfolioPageComponent implements OnInit {
                 internalRoutes.portfolio.subRoutes.allocations.routerLink
             },
             {
+              iconName: 'target-outline',
+              label: internalRoutes.portfolio.subRoutes.customAllocations.title,
+              routerLink:
+                internalRoutes.portfolio.subRoutes.customAllocations.routerLink
+            },
+            {
               iconName: 'calculator-outline',
               label: internalRoutes.portfolio.subRoutes.fire.title,
               routerLink: internalRoutes.portfolio.subRoutes.fire.routerLink
@@ -83,7 +90,8 @@ export class PortfolioPageComponent implements OnInit {
       calculatorOutline,
       pieChartOutline,
       scanOutline,
-      swapVerticalOutline
+      swapVerticalOutline,
+      targetOutline
     });
   }
 
