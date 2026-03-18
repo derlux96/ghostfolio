@@ -39,7 +39,13 @@ import { Observable } from 'rxjs';
 })
 export class GfCustomAllocationsPageComponent implements OnInit {
   public allocationData$: Observable<CustomAllocationResponse>;
-  public displayedColumns = ['tagName', 'currentAllocation', 'targetAllocation', 'drift', 'actions'];
+  public displayedColumns = [
+    'tagName',
+    'currentAllocation',
+    'targetAllocation',
+    'drift',
+    'actions'
+  ];
   public hasImpersonationId: boolean;
 
   public constructor(
@@ -87,11 +93,11 @@ export class GfCustomAllocationsPageComponent implements OnInit {
     this.changeDetectorRef.markForCheck();
   }
 
-  public trackByIndex(index: number, item: RebalancingAction): string {
+  public trackByIndex(_index: number, item: RebalancingAction): string {
     return item.tagId;
   }
 
-  public trackByIndexAllocation(index: number, item: any): string {
+  public trackByIndexAllocation(_index: number, item: any): string {
     return item.tagId;
   }
 }

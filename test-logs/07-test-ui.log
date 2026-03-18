@@ -1,0 +1,83 @@
+
+> nx run ui:test --passWithNoTests --silent
+
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ui [39m[27m[0m [2mlibs/ui/src/lib/fire-calculator/[22m[1mfire-calculator.service.spec.ts[22m
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+ts-jest[ts-compiler] (WARN) 
+                TypeScript compiler option 'isolatedModules' may prevent the 'emitDecoratorMetadata' option from emitting all metadata.
+                The 'emitDecoratorMetadata' option is not required by Angular and can be removed if not explicitly required by the project.'
+            
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m ui [39m[27m[0m [2mlibs/ui/src/lib/historical-market-data-editor/[22m[1mhistorical-market-data-editor.component.spec.ts[22m
+[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 total
+[1mTests:       [22m[1m[32m6 passed[39m[22m, 6 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        3.132 s
+
+
+
+ NX   Successfully ran target test for project ui
+
+

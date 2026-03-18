@@ -1,0 +1,36 @@
+name: ghostfolio-test
+
+services:
+  postgres-test:
+    image: postgres:15-alpine
+    container_name: gf-test-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ghostfolio-test
+      POSTGRES_USER: ghostfolio
+      POSTGRES_PASSWORD: ghostfolio-test-pw
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d ghostfolio-test -U ghostfolio"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - gf-test-postgres:/var/lib/postgresql/data
+
+  redis-test:
+    image: redis:7-alpine
+    container_name: gf-test-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    command: redis-server --requirepass ghostfolio-test-redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "--pass", "ghostfolio-test-redis", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  gf-test-postgres:

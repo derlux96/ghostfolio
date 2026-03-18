@@ -1,12 +1,7 @@
 import { HasPermissionGuard } from '@ghostfolio/api/guards/has-permission.guard';
 import { ImpersonationService } from '@ghostfolio/api/services/impersonation/impersonation.service';
-import {
-  HEADER_KEY_IMPERSONATION
-} from '@ghostfolio/common/config';
-import {
-  SetAllocationTargetsDto
-} from '@ghostfolio/common/dtos';
-import { permissions } from '@ghostfolio/common/permissions';
+import { HEADER_KEY_IMPERSONATION } from '@ghostfolio/common/config';
+import { SetAllocationTargetsDto } from '@ghostfolio/common/dtos';
 import type { RequestWithUser } from '@ghostfolio/common/types';
 
 import {

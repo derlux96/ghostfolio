@@ -3,10 +3,9 @@ import {
   AllocationTargetDto,
   RebalancingAction
 } from '@ghostfolio/common/dtos';
-import { PortfolioPosition } from '@ghostfolio/common/interfaces';
 
 import { Injectable } from '@nestjs/common';
-import { AssetClass, AssetSubClass, DataSource, Prisma } from '@prisma/client';
+import { DataSource } from '@prisma/client';
 
 @Injectable()
 export class AllocationService {
@@ -39,10 +38,7 @@ export class AllocationService {
     // Get all tags with target allocations
     const tags = await this.prismaService.tag.findMany({
       where: {
-        OR: [
-          { userId: effectiveUserId },
-          { userId: null }
-        ]
+        OR: [{ userId: effectiveUserId }, { userId: null }]
       }
     });
 
@@ -78,9 +74,15 @@ export class AllocationService {
       }
 
       if (order.type === 'BUY') {
-        symbolQuantityMap.set(symbol, symbolQuantityMap.get(symbol)! + order.quantity);
+        symbolQuantityMap.set(
+          symbol,
+          symbolQuantityMap.get(symbol)! + order.quantity
+        );
       } else if (order.type === 'SELL') {
-        symbolQuantityMap.set(symbol, symbolQuantityMap.get(symbol)! - order.quantity);
+        symbolQuantityMap.set(
+          symbol,
+          symbolQuantityMap.get(symbol)! - order.quantity
+        );
       }
 
       // Track tags for this symbol
@@ -139,14 +141,14 @@ export class AllocationService {
     for (const tag of tags) {
       if (tag.targetAllocation && tag.targetAllocation > 0) {
         const currentValue = tagValueMap.get(tag.id) || 0;
-        const currentAllocation = totalPortfolioValue > 0
-          ? currentValue / totalPortfolioValue
-          : 0;
+        const currentAllocation =
+          totalPortfolioValue > 0 ? currentValue / totalPortfolioValue : 0;
         const targetAllocation = tag.targetAllocation;
         const targetValue = totalPortfolioValue * targetAllocation;
         const drift = currentAllocation - targetAllocation;
 
-        if (Math.abs(drift) > 0.01) { // 1% tolerance
+        if (Math.abs(drift) > 0.01) {
+          // 1% tolerance
           hasDrift = true;
         }
 
@@ -172,7 +174,8 @@ export class AllocationService {
       const valueDiff = item.targetValue - item.currentValue;
       const percentageDiff = item.targetAllocation - item.currentAllocation;
 
-      if (Math.abs(percentageDiff) > 0.01) { // 1% tolerance
+      if (Math.abs(percentageDiff) > 0.01) {
+        // 1% tolerance
         rebalancingActions.push({
           tagId: item.tagId,
           tagName: item.tagName,
@@ -204,7 +207,7 @@ export class AllocationService {
 
   public async setAllocationTargets({
     targets,
-    userId
+    userId: _userId
   }: {
     targets: AllocationTargetDto[];
     userId: string;

@@ -1,0 +1,15 @@
+
+> nx run common:test --passWithNoTests --silent
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m common [39m[27m[0m [2mlibs/common/src/lib/[22m[1mcalculation-helper.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m common [39m[27m[0m [2mlibs/common/src/lib/[22m[1mhelper.spec.ts[22m
+[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 total
+[1mTests:       [22m[1m[32m23 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1.64 s
+
+
+
+ NX   Successfully ran target test for project common
+
+

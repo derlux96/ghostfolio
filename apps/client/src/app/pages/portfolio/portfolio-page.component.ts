@@ -15,10 +15,10 @@ import { addIcons } from 'ionicons';
 import {
   analyticsOutline,
   calculatorOutline,
+  flagOutline,
   pieChartOutline,
   scanOutline,
-  swapVerticalOutline,
-  targetOutline
+  swapVerticalOutline
 } from 'ionicons/icons';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
@@ -63,7 +63,7 @@ export class PortfolioPageComponent implements OnInit {
                 internalRoutes.portfolio.subRoutes.allocations.routerLink
             },
             {
-              iconName: 'target-outline',
+              iconName: 'flag-outline',
               label: internalRoutes.portfolio.subRoutes.customAllocations.title,
               routerLink:
                 internalRoutes.portfolio.subRoutes.customAllocations.routerLink
@@ -88,10 +88,10 @@ export class PortfolioPageComponent implements OnInit {
     addIcons({
       analyticsOutline,
       calculatorOutline,
+      flagOutline,
       pieChartOutline,
       scanOutline,
-      swapVerticalOutline,
-      targetOutline
+      swapVerticalOutline
     });
   }
 

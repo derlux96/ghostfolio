@@ -56,6 +56,7 @@ import {
   UserItem,
   WatchlistResponse
 } from '@ghostfolio/common/interfaces';
+import { CustomAllocationResponse } from '@ghostfolio/common/interfaces';
 import { filterGlobalPermissions } from '@ghostfolio/common/permissions';
 import type {
   AiPromptMode,

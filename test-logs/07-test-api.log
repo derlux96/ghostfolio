@@ -1,0 +1,387 @@
+
+> nx run api:test --passWithNoTests --silent
+
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/helper/[22m[1mobject.helper.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-baln-buy.spec.ts[22m ([0m[1m[41m6.209 s[49m[22m[0m)
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m30.11.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m30.11.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m30.11.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-novn-buy-and-sell.spec.ts[22m
+[95m[Nest] 819470  - [39m11.04.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m11.04.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m11.04.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-btcusd.spec.ts[22m
+[95m[Nest] 819471  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-btceur.spec.ts[22m
+[95m[Nest] 819470  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m10.07.2023, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-googl-buy.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-baln-buy-and-sell-in-two-activities.spec.ts[22m
+[95m[Nest] 819470  - [39m10.07.2023, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m01.01.2025, 00:00:00 [95m  DEBUG[39m [38;5;3m[ActivitiesService] [39m[95mCompleted execution of getActivitiesForPortfolioCalculator() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m01.01.2025, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m01.01.2025, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[31m FAIL [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-cash.spec.ts[22m
+[1m[31m  [1m● [22m[1mPortfolioCalculator › Cash Performance › should calculate performance for cash assets in CHF default currency[39m[22m
+    [2mexpect([22m[31mreceived[39m[2m).[22mtoMatchObject[2m([22m[32mexpected[39m[2m)[22m
+    [32m- Expected  -  3[39m
+    [31m+ Received  + 85[39m
+    [33m@@ -8,11 +8,36 @@[39m
+    [2m    "dividendInBaseCurrency": "0",[22m
+    [2m    "fee": "0",[22m
+    [2m    "feeInBaseCurrency": "0",[22m
+    [2m    "grossPerformance": "0",[22m
+    [2m    "grossPerformancePercentage": "0",[22m
+    [32m-   "grossPerformancePercentageWithCurrencyEffect": "0.08211603004634809014",[39m
+    [31m+   "grossPerformancePercentageWithCurrencyEffect": Big {[39m
+    [31m+     "c": Array [[39m
+    [31m+       8,[39m
+    [31m+       2,[39m
+    [31m+       1,[39m
+    [31m+       1,[39m
+    [31m+       5,[39m
+    [31m+       3,[39m
+    [31m+       8,[39m
+    [31m+       4,[39m
+    [31m+       6,[39m
+    [31m+       1,[39m
+    [31m+       5,[39m
+    [31m+       3,[39m
+    [31m+       8,[39m
+    [31m+       4,[39m
+    [31m+       6,[39m
+    [31m+       1,[39m
+    [31m+       5,[39m
+    [31m+       3,[39m
+    [31m+       3,[39m
+    [31m+     ],[39m
+    [31m+     "constructor": [Function Big],[39m
+    [31m+     "e": -2,[39m
+    [31m+     "s": 1,[39m
+    [31m+   },[39m
+    [2m    "grossPerformanceWithCurrencyEffect": "70",[22m
+    [2m    "includeInTotalAssetValue": false,[22m
+    [2m    "investment": "1820",[22m
+    [2m    "investmentWithCurrencyEffect": "1750",[22m
+    [2m    "marketPrice": 1,[22m
+    [33m@@ -37,9 +62,66 @@[39m
+    [2m      "wtd": "-80",[22m
+    [2m      "ytd": "20",[22m
+    [2m    },[22m
+    [2m    "quantity": "2000",[22m
+    [2m    "symbol": "USD",[22m
+    [32m-   "timeWeightedInvestment": "912.47956403269754768392",[39m
+    [32m-   "timeWeightedInvestmentWithCurrencyEffect": "852.45231607629427792916",[39m
+    [31m+   "timeWeightedInvestment": Big {[39m
+    [31m+     "c": Array [[39m
+    [31m+       9,[39m
+    [31m+       1,[39m
+    [31m+       2,[39m
+    [31m+       4,[39m
+    [31m+       8,[39m
+    [31m+       6,[39m
+    [31m+       3,[39m
+    [31m+       3,[39m
+    [31m+       8,[39m
+    [31m+       7,[39m
+    [31m+       9,[39m
+    [31m+       7,[39m
+    [31m+       8,[39m
+    [31m+       1,[39m
+    [31m+       4,[39m
+    [31m+       2,[39m
+    [31m+       0,[39m
+    [31m+       8,[39m
+    [31m+       2,[39m
+    [31m+       0,[39m
+    [31m+       2,[39m
+    [31m+       3,[39m
+    [31m+       5,[39m
+    [31m+     ],[39m
+    [31m+     "constructor": [Function Big],[39m
+    [31m+     "e": 2,[39m
+    [31m+     "s": 1,[39m
+    [31m+   },[39m
+    [31m+   "timeWeightedInvestmentWithCurrencyEffect": Big {[39m
+    [31m+     "c": Array [[39m
+    [31m+       8,[39m
+    [31m+       5,[39m
+    [31m+       2,[39m
+    [31m+       4,[39m
+    [31m+       5,[39m
+    [31m+       9,[39m
+    [31m+       0,[39m
+    [31m+       1,[39m
+    [31m+       6,[39m
+    [31m+       3,[39m
+    [31m+       9,[39m
+    [31m+       3,[39m
+    [31m+       4,[39m
+    [31m+       4,[39m
+    [31m+       2,[39m
+    [31m+       6,[39m
+    [31m+       2,[39m
+    [31m+       3,[39m
+    [31m+       4,[39m
+    [31m+       6,[39m
+    [31m+       6,[39m
+    [31m+       5,[39m
+    [31m+     ],[39m
+    [31m+     "constructor": [Function Big],[39m
+    [31m+     "e": 2,[39m
+    [31m+     "s": 1,[39m
+    [31m+   },[39m
+    [2m    "valueInBaseCurrency": "1820",[22m
+    [2m  }[22m
+[2m[22m
+[2m    [0m [90m 229 |[39m [90m       * Value in base currency: 2000 USD * 0.91 = 1820 CHF[39m[22m
+[2m     [90m 230 |[39m [90m       */[39m[22m
+[2m    [31m[1m>[22m[2m[39m[90m 231 |[39m       expect(position)[33m.[39mtoMatchObject[33m<[39m[33mTimelinePosition[39m[33m>[39m({[22m
+[2m     [90m     |[39m                        [31m[1m^[22m[2m[39m[22m
+[2m     [90m 232 |[39m         activitiesCount[33m:[39m [35m2[39m[33m,[39m[22m
+[2m     [90m 233 |[39m         averagePrice[33m:[39m [36mnew[39m [33mBig[39m([35m1[39m)[33m,[39m[22m
+[2m     [90m 234 |[39m         currency[33m:[39m [32m'USD'[39m[33m,[39m[0m[22m
+[2m[22m
+[2m      [2mat [22m[2m[0m[36msrc/app/portfolio/calculator/roai/portfolio-calculator-cash.spec.ts[39m[0m[2m:231:24[22m[2m[22m
+[2m      [2mat fulfilled ([22m[2m../../node_modules/tslib/tslib.js[2m:167:62)[22m[2m[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-novn-buy-and-sell-partially.spec.ts[22m
+[95m[Nest] 819471  - [39m11.04.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m11.04.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m11.04.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-baln-buy-and-buy.spec.ts[22m
+[95m[Nest] 819470  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-baln-buy-and-sell.spec.ts[22m
+[95m[Nest] 819473  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-jnug-buy-and-sell-and-buy-and-sell.spec.ts[22m
+[95m[Nest] 819471  - [39m28.12.2025, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m28.12.2025, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m28.12.2025, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m10.07.2023, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m10.07.2023, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-msft-buy-with-dividend.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-valuable.spec.ts[22m
+[95m[Nest] 819470  - [39m10.07.2023, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m31.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m31.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m31.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-msft-buy-and-sell.spec.ts[22m
+[95m[Nest] 819471  - [39m01.04.2024, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-fee.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-btceur-in-base-currency-eur.spec.ts[22m
+[95m[Nest] 819470  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-btcusd-short.spec.ts[22m
+[95m[Nest] 819471  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m14.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-no-orders.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/[22m[1mcurrent-rate.service.spec.ts[22m
+[95m[Nest] 819470  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819470  - [39m18.12.2021, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[95m[Nest] 819473  - [39m18.03.2026, 12:35:05 [95m  DEBUG[39m [38;5;3m[CurrentRateService] [39m[95mCompleted execution of getValues() in 0.001 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/portfolio/calculator/roai/[22m[1mportfolio-calculator-liability.spec.ts[22m
+[95m[Nest] 819471  - [39m31.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeTransactionPoints() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m31.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[ExchangeRateDataService] [39m[95mCompleted execution of getExchangeRatesByCurrency() in 0.000 seconds[39m
+[95m[Nest] 819471  - [39m31.01.2022, 00:00:00 [95m  DEBUG[39m [38;5;3m[PortfolioCalculator] [39m[95mCompleted execution of computeSnapshot() in 0.000 seconds[39m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/guards/[22m[1mhas-permission.guard.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/services/data-provider/data-enhancer/yahoo-finance/[22m[1myahoo-finance.service.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/services/benchmark/[22m[1mbenchmark.service.spec.ts[22m
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [0m[7m[37m api [39m[27m[0m [2mapps/api/src/app/import/[22m[1mimport-tr.service.spec.ts[22m
+[33mA worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.[39m
+[1mSummary of all failing tests[22m
+[0m[7m[
+1m[31m FAIL [39m[22m[27m[0m [2msrc/app/por
+tfolio/calculator/ro
+ai/[22m[1mportfol
+io-calculator-ca
+sh.spec.ts[22m
+[1m[31m  [1m● [22m[1mPortfolioCalc
+ulator › Cash Performance › 
+should calculate p
+erformance for ca
+sh assets in CH
+F default curren
+cy[39m[22m
+  
+  [2mexpect([22m
+[31mreceived[39
+m[2m).[22mtoMatchObject[2m
+([22m[32mexpecte
+d[39m[2m)[22m
+    [32m- Expecte
+d  -  3[39m
+    [
+31m+ Received  + 85[39m
+ 
+   [33m@@ -8,11 +8,36 @@[39
+m
+    [2m    "di
+videndInBaseCurrency": "0",[22m
+    [2m    "fee": "0"
+,[22m
+    [2m    "feeIn
+BaseCurrency"
+: "0",[22
+m
+    [2m
+    "grossPerformanc
+e": "0",
+[22m
+   
+ [2m    "gross
+Performance
+Percentage
+": "0",[2
+2m
+    [3
+2m-   "gros
+sPerformanc
+ePercentageWithCu
+rrencyEffe
+ct": "0.08
+2116030046
+34809014"
+,[39m
+  
+  [31m+   
+"grossPerf
+ormancePer
+centageWit
+hCurrency
+Effect": Bi
+g {[39m
+   
+ [31m+   
+  "c": Ar
+ray [[39m
+    [31
+m+       8
+,[39m
+    
+[31m+      
+ 2,[39m
+    [31m+ 
+      1,[39m
+ 
+   [31m+    
+   1,[39m
+ 
+   [31m+  
+     5,[
+39m
+    
+[31m+       
+3,[39m
+ 
+   [31m+  
+     8,[3
+9m
+    
+[31m+      
+ 4,[39m
+    [31m
++       6
+,[39m
+   
+ [31m+  
+     1,[3
+9m
+    [3
+1m+       5
+,[39m
+  
+  [31m+   
+    3,[
+39m
+    
+[31m+      
+ 8,[39m
+    [31m
++       4
+,[39m
+    [31m+    
+   6,[39m
+    [31m
++       1
+,[39m
+   
+ [31m+   
+    5,[3
+9m
+    [
+31m+       3
+,[39m
+  
+  [31m+   
+    3,[3
+9m
+    [
+31m+     ],
+[39m
+   
+ [31m+   
+  "constr
+uctor": [
+Function B
+ig],[39m
+    [31
+m+     "e
+": -2,[39
+m
+    [
+31m+     "s"
+: 1,[39
+m
+    [31
+m+   },[39
+m
+    [2
+m    "gr
+ossP
+erformanceW
+ithCurrenc
+yEffect": "70",[22m
+    [2m    "includeInTot
+alAssetValue": false,[22m
+ 
+   [2m    "in
+vestment":
+ "1820",
+[22m
+    [2m 
+   "investmentWithCurrencyEffect": "1750",[22m
+    [2m    "marketPrice": 1,[22m
+    [33m@@ -37,9 +62,66 @@[39m
+    [2m      "wtd": "-80",[22m
+    [2m      "ytd": "
+
+
+
+ NX   Running target test for project api failed
+
+Failed tasks:
+
+- api:test
+
+Hint: run the command with --verbose for more details.
+

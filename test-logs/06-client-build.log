@@ -1,0 +1,242 @@
+
+> nx run client:build
+
+[1m[33mThe 'vendorChunk' option is not used by this builder and will be ignored.[39m[22m
+[33m❯[39m Building...
+[32m✔[39m Building...
+[37mApplication bundle generation failed. [11.864 seconds] - 2026-03-18T11:34:52.517Z
+[39m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDirect import of '@angular/localize/init' detected. This may lead to undefined behavior.[0m [1m[35m[plugin angular-localize-init-warning][0m
+    libs/ui/src/lib/i18n.ts:1:7:
+[37m      1 │ import [32m'@angular/localize/init'[37m;
+        ╵        [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+  Include '@angular/localize/init' as a polyfill instead.
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:1:8:
+[37m      1 │ @import [32m[37m'./styles/bootstrap';
+        ╵         [32m^[0m
+  Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:2:8:
+[37m      2 │ @import [32m[37m'./styles/table';
+        ╵         [32m^[0m
+  Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:3:8:
+[37m      3 │ @import [32m[37m'./styles/variables';
+        ╵         [32m^[0m
+  Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was[39m[22m[1m[33m triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:5:8:
+[37m      5 │ @import [32m[37m'svgmap/style.min';
+        ╵         [32m^[0m
+  Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:13:6:
+[37m      13 │     #{[32m[37mred($dark-primary-text)}, #{green($dark-primary-text)},
+         ╵       [32m^[0m
+  Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  Use color.red instead.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:13:6:
+[37m      13 │     #{[32m[37mred($dark-primary-text)}, #{green($dark-primary-text)},
+         ╵       [32m^[0m
+  red() is deprecated. Suggestion:
+  
+  color.channel($color, "red", $space: rgb)
+  
+  More info: [4mhttps://sass-lang.com/d/color-functions[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.s[39m[22m[1m[33mcss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:13:34:
+[37m      13 │     #{red($dark-primary-text)}, #{[32m[37mgreen($dark-primary-text)},
+         ╵                                   [32m^[0m
+  Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  Use color.green instead.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:13:34:
+[37m      13 │     #{red($dark-primary-text)}, #{[32m[37mgreen($dark-primary-text)},
+         ╵                                   [32m^[0m
+  green() is deprecated. Suggestion:
+  
+  color.channel($color, "green", $space: rgb)
+  
+  More info: [4mhttps://sass-lang.com/d/color-functions[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:14:6:
+[37m      14 │     #{[32m[37mblue($dark-primary-text)}, #{alpha($dark-primary-text)};
+         ╵       [32m^[0m
+  Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  Use color.blue instead.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/clie[39m[22m[1m[33mnt/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:14:6:
+[37m      14 │     #{[32m[37mblue($dark-primary-text)}, #{alpha($dark-primary-text)};
+         ╵       [32m^[0m
+  blue() is deprecated. Suggestion:
+  
+  color.channel($color, "blue", $space: rgb)
+  
+  More info: [4mhttps://sass-lang.com/d/color-functions[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:14:35:
+[37m      14 │     #{blue($dark-primary-text)}, #{[32m[37malpha($dark-primary-text)};
+         ╵                                    [32m^[0m
+  Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  Use color.alpha instead.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:22:6:
+[37m      22 │     #{[32m[37mred($light-primary-text)}, #{green($light-primary-text)},
+         ╵       [32m^[0m
+  Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+  Use color.red instead.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles[39m[22m
+[1m[33m.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:22:6:
+[37m      22 │     #{[32m[37mred($light-primary-text)}, #{green($light-primary-text)},
+         ╵       [32m^[0m
+  red() is deprecated. Suggestion:
+  
+  color.channel($color, "red", $space: rgb)
+  
+  More info: [4mhttps://sass-lang.com/d/color-functions[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles.scss:22:35:
+[37m      22 │     #{red($light-primary-text)}, #{[32m[37mgreen($light-primary-text)},
+         ╵                                    [32m^[0m
+  green() is deprecated. Suggestion:
+  
+  color.channel($color, "green", $space: rgb)
+  
+  More info: [4mhttps://sass-lang.com/d/color-functions[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDeprecation[0m [1m[35m[plugin angular-sass][0m
+    apps/client/src/styles/bootstrap.scss:8:8:
+[37m      8 │ @import [32m[37m'bootstrap/scss/functions';
+        ╵         [32m^[0m
+  Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+  
+  More info and automated migrator: [4mhttps://sass-lang.com/d/import[0m
+  The plugin "angular-sass" was triggered by this import
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[33m▲ [43;33m[[43;30mWARNIN[39m[22m[1m[33mG[43;33m][0m [1m14 repetitive deprecation warnings omitted.
+Run in verbose mode to see all warnings.[0m [1m[35m[plugin angular-sass][0m
+    angular:styles/global:styles:3:8:
+[37m      3 │ @import [32m'apps/client/src/styles.scss'[37m;
+        ╵         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+  null
+[39m[22m
+[1m[31m[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS6133: 'index' is declared but its value is never read.[0m [1m[35m[plugin angular-compiler][0m
+    apps/client/src/app/pages/portfolio/custom-allocations/custom-allocations-page.component.ts:90:22:
+[37m      90 │   public trackByIndex([32mindex[37m: number, item: RebalancingAction): str...
+         ╵                       [32m~~~~~[0m
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS6133: 'index' is declared but its value is never read.[0m [1m[35m[plugin angular-compiler][0m
+    apps/client/src/app/pages/portfolio/custom-allocations/custom-allocations-page.component.ts:94:32:
+[37m      94 │   public trackByIndexAllocation([32mindex[37m: number, item: any): string {
+         ╵                                 [32m~~~~~[0m
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2724: '"ionicons/icons"' has no exported member named 'targetOutline'. Did you mean 'atOutline'?[0m [1m[35m[plugin angular-compiler][0m
+    apps/client/src/app/pages/portfolio/portfolio-page.component.ts:21:2:
+[37m      21 │   [32mtargetOutline[37m
+         ╵   [32m~~~~~~~~~~~~~[0m
+  'atOutline' is declared here.
+    node_modules/ionicons/icons/index.d.ts:94:19:
+[37m      94 │ export declare var [32matOutline[37m: string;
+         ╵                    [32m~~~~~~~~~[0m
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'CustomAllocationResponse'.[0m [1m[35m[plugin angular-compiler][0m
+    libs/ui/src/lib/services/data.service.ts:749:46:
+[37m      749 │ ... fetchCustomAllocations(): Observable<[32mCustomAllocationResponse[37m> {
+          ╵                                          [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'CustomAllocationResponse'.[0m [1m[35m[plugin angular-compiler][0m
+    libs/ui/src/lib/services/data.service.ts:750:25:
+[37m      750 │ ...turn this.http.get<[32mCustomAllocationResponse[37m>('/a[39m[22m[1m[31mpi/v1/allocati...
+          ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mTS2322: Type '{ id: undefined; name: string; userId: null; }' is not assignable to type 'SelectedTag'.
+  Type '{ id: undefined; name: string; userId: null; }' is missing the following properties from type 'NewTag': color, targetAllocation[0m [1m[35m[plugin angular-compiler][0m
+    libs/ui/src/lib/tags-selector/tags-selector.component.ts:105:6:
+[37m      105 │       [32mtag[37m = {
+          ╵       [32m~~~[0m
+[39m[22m
+
+
+
+ NX   Running target build for project client failed
+
+Failed tasks:
+
+- client:build
+
+Hint: run the command with --verbose for more details.
+

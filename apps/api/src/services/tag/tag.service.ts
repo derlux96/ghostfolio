@@ -76,9 +76,11 @@ export class TagService {
     });
 
     return tags
-      .map(({ _count, id, name, userId }) => ({
+      .map(({ _count, color, id, name, targetAllocation, userId }) => ({
+        color,
         id,
         name,
+        targetAllocation,
         userId,
         isUsed: _count.activities > 0
       }))

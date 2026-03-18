@@ -1,0 +1,90 @@
+
+> nx run api:build
+
+[1m[31mERROR[39m[22m in [1m./apps/api/src/app/allocation/allocation.controller.ts:[32m[1m9:1[22m[39m[1m[39m[22m
+[90mTS6133: [39m'permissions' is declared but its value is never read.
+  [0m [90m  7 |[39m   [33mSetAllocationTargetsDto[39m
+   [90m  8 |[39m } [36mfrom[39m [32m'@ghostfolio/common/dtos'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { permissions } [36mfrom[39m [32m'@ghostfolio/common/permissions'[39m[33m;[39m
+   [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 10 |[39m [36mimport[39m type { [33mRequestWithUser[39m } [36mfrom[39m [32m'@ghostfolio/common/types'[39m[33m;[39m
+   [90m 11 |[39m
+   [90m 12 |[39m [36mimport[39m {[0m
+[1m[31mERROR[39m[22m in [1m./apps/api/src/app/allocation/allocation.service.ts:[32m[1m6:1[22m[39m[1m[39m[22m
+[90mTS6133: [39m'PortfolioPosition' is declared but its value is never read.
+  [0m [90m 4 |[39m   [33mRebalancingAction[39m
+   [90m 5 |[39m } [36mfrom[39m [32m'@ghostfolio/common/dtos'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { [33mPortfolioPosition[39m } [36mfrom[39m [32m'@ghostfolio/common/interfaces'[39m[33m;[39m
+   [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 7 |[39m
+   [90m 8 |[39m [36mimport[39m { [33mInjectable[39m } [36mfrom[39m [32m'@nestjs/common'[39m[33m;[39m
+   [90m 9 |[39m [36mimport[39m { [33mAssetClass[39m[33m,[39m [33mAssetSubClass[39m[33m,[39m [33mDataSource[39m[33m,[39m [33mPrisma[39m } [36mfrom[39m [32m'@prisma/client'[39m[33m;[39m[0m
+[1m[31mERROR[39m[22m in [1m./apps/api/src/app/allocation/allocation.service.ts:[32m[1m9:10[22m[39m[1m[39m[22m
+[90mTS6133: [39m'AssetClass' is declared but its value is never read.
+  [0m [90m  7 |[39m
+   [90m  8 |[39m [36mimport[39m { [33mInjectable[39m } [36mfrom[39m [32m'@nestjs/common'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAssetClass[39m[33m,[39m [33mAssetSubClass[39m[33m,[39m [33mDataSource[39m[33m,[39m [33mPrisma[39m } [36mfrom[39m [32m'@prisma/client'[39m[33m;[39m
+   [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 10 |[39m
+   [90m 11 |[39m [33m@[39m[33mInjectable[39m()
+   [90m 12 |[39m [36mexport[39m [36mclass[39m [33mAllocationService[39m {[0m
+[1m[31mERROR[39m[22m in [1m./apps/api/src/app/allocation/allocation.service.ts:[32m[1m9:22[22m[39m[1m[39m[22m
+[90mTS6133: [39m'AssetSubClass' is declared but its value is never read.
+  [0m [90m  7 |[39m
+   [90m  8 |[39m [36mimport[39m { [33mInjectable[39m } [36mfrom[39m [32m'@nestjs/common'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAssetClass[39m[33m,[39m [33mAssetSubClass[39m[33m,[39m [33mDataSource[39m[33m,[39m [33mPrisma[39m } [36mfrom[39m [32m'@prisma/client'[39m[33m;[39m
+   [90m    |[39m                      [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 10 |[39m
+   [90m 11 |[39m [33m@[39m[33mInjectable[39m()
+   [90m 12 |[39m [36mexport[39m [36mclass[39m [33mAllocationService[39m {[0m
+[1m[31mERROR[39m[22m in [1m./apps/api/src/app/allocation/allocation.service.ts:[32m[1m9:49[22m[39m[1m[39m[22m
+[90mTS6133: [39m'Prisma' is declared but its value is never read.
+  [0m [90m  7 |[39m
+   [90m  8 |[39m [36mimport[39m { [33mInjectable[39m } [36mfrom[39m [32m'@nestjs/common'[39m[33m;[39m
+  [31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAssetClass[39m[33m,[39m [33mAssetSubClass[39m[33m,[39m [33mDataSource[39m[33m,[39m [33mPrisma[39m } [36mfrom[39m [32m'@prisma/client'[39m[33m;[39m
+   [90m    |[39m                                                 [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 10 |[39m
+   [90m 11 |[39m [33m@[39m[33mInjectable[39m()
+   [90m 12 |[39m [36mexport[39m [36mclass[39m [33mAllocationService[39m {[0m
+[1m[31mERROR[39m[22m in [1m./apps/api/src/app/allocation/allocation.service.ts:[32m[1m207:5[22m[39m[1m[39m[22m
+[90mTS6133: [39m'userId' is declared but its value is never read.
+  [0m [90m 205 |[39m   [36mpublic[39m [36masync[39m setAllocationTargets({
+   [90m 206 |[39m     targets[33m,[39m
+  [31m[1m>[22m[39m[90m 207 |[39m     userId
+   [90m     |[39m     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 208 |[39m   }[33m:[39m {
+   [90m 209 |[39m     targets[33m:[39m [33mAllocationTargetDto[39m[][33m;[39m
+   [90m 210 |[39m     userId[33m:[39m string[33m;[39m[0m
+[1m[31mERROR[39m[22m in [1m./apps/api/src/app/export/export.service.ts:[32m[1m212:7[22m[39m[1m[39m[22m
+[90mTS2322: [39mType '{ id: string; name: string; }[]' is not assignable to type 'Omit<{ userId: string; targetAllocation: number; color: string; name: string; id: string; }, "userId">[]'.
+  Type '{ id: string; name: string; }' is missing the following properties from type 'Omit<{ userId: string; targetAllocation: number; color: string; name: string; id: string; }, "userId">': targetAllocation, color
+  [0m [90m 210 |[39m       )[33m,[39m
+   [90m 211 |[39m       platforms[33m:[39m [33mObject[39m[33m.[39mvalues(platformsMap)[33m,[39m
+  [31m[1m>[22m[39m[90m 212 |[39m       tags[33m,[39m
+   [90m     |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 213 |[39m       activities[33m:[39m activities[33m.[39mmap(
+   [90m 214 |[39m         ({
+   [90m 215 |[39m           accountId[33m,[39m[0m
+[1m[31mERROR[39m[22m in [1m./apps/api/src/app/user/user.service.ts:[32m[1m170:7[22m[39m[1m[39m[22m
+[90mTS2322: [39mType '{ id: string; name: string; userId: string; isUsed: boolean; }[]' is not assignable to type '({ userId: string; targetAllocation: number; color: string; name: string; id: string; } & { isUsed: boolean; })[]'.
+  Type '{ id: string; name: string; userId: string; isUsed: boolean; }' is not assignable to type '{ userId: string; targetAllocation: number; color: string; name: string; id: string; } & { isUsed: boolean; }'.
+    Type '{ id: string; name: string; userId: string; isUsed: boolean; }' is missing the following properties from type '{ userId: string; targetAllocation: number; color: string; name: string; id: string; }': targetAllocation, color
+  [0m [90m 168 |[39m       subscription[33m,[39m
+   [90m 169 |[39m       systemMessage[33m,[39m
+  [31m[1m>[22m[39m[90m 170 |[39m       tags[33m,[39m
+   [90m     |[39m       [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+   [90m 171 |[39m       access[33m:[39m access[33m.[39mmap((accessItem) [33m=>[39m {
+   [90m 172 |[39m         [36mreturn[39m {
+   [90m 173 |[39m           alias[33m:[39m accessItem[33m.[39malias[33m,[39m[0m
+webpack compiled with [1m[31m8 errors[39m[22m (873a3db467da2894)
+
+
+
+ NX   Running target build for project api failed
+
+Failed tasks:
+
+- api:build
+
+Hint: run the command with --verbose for more details.
+

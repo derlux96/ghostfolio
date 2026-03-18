@@ -1,0 +1,17 @@
+
+> nx run api:copy-assets
+
+> shx rm -rf dist/apps/api
+
+> shx mkdir -p dist/apps/api/assets/locales
+
+> shx cp -r apps/api/src/assets/* dist/apps/api/assets
+
+> shx cp -r apps/client/src/locales/* dist/apps/api/assets/locales
+
+
+
+
+ NX   Successfully ran target copy-assets for project api
+
+
