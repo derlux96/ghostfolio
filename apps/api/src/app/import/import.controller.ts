@@ -26,6 +26,8 @@ import { DataSource } from '@prisma/client';
 import { StatusCodes, getReasonPhrase } from 'http-status-codes';
 
 import { ImportDataDto } from './import-data.dto';
+import { TrImportDto, TrImportResponse } from './import-tr.dto';
+import { ImportTrService } from './import-tr.service';
 import { ImportService } from './import.service';
 
 @Controller('import')
@@ -33,6 +35,7 @@ export class ImportController {
   public constructor(
     private readonly configurationService: ConfigurationService,
     private readonly importService: ImportService,
+    private readonly importTrService: ImportTrService,
     @Inject(REQUEST) private readonly request: RequestWithUser
   ) {}
 
@@ -108,5 +111,104 @@ export class ImportController {
     });
 
     return { activities };
+  }
+
+  @Post('tr-csv')
+  @UseGuards(AuthGuard('jwt'), HasPermissionGuard)
+  @HasPermission(permissions.createActivity)
+  public async importTrCsv(
+    @Body() importDto: TrImportDto,
+    @Query('dryRun') isDryRunParam = 'false'
+  ): Promise<TrImportResponse> {
+    const isDryRun = isDryRunParam === 'true';
+
+    // Parse the CSV and get preview
+    const preview = await this.importTrService.parseTrCsv(importDto.csvData);
+
+    // Convert TR transactions to Ghostfolio orders
+    const orders = await this.importTrService.convertToGhostfolioOrders(
+      preview.activities,
+      importDto.accountId
+    );
+
+    if (!isDryRun) {
+      let maxActivitiesToImport = this.configurationService.get(
+        'MAX_ACTIVITIES_TO_IMPORT'
+      );
+
+      if (
+        this.configurationService.get('ENABLE_FEATURE_SUBSCRIPTION') &&
+        this.request.user.subscription.type === 'Premium'
+      ) {
+        maxActivitiesToImport = Number.MAX_SAFE_INTEGER;
+      }
+
+      // Import using the main import service
+      const importedActivities = await this.importService.import({
+        isDryRun,
+        maxActivitiesToImport,
+        accountsWithBalancesDto: [],
+        activitiesDto: orders.map((order) => ({
+          ...order,
+          accountId: importDto.accountId,
+          tags: importDto.tags
+        })),
+        assetProfilesWithMarketDataDto: [],
+        tagsDto: [],
+        user: this.request.user
+      });
+
+      return {
+        ...preview,
+        activities: importedActivities
+      };
+    }
+
+    // For dry run, return the converted orders as activities
+    return {
+      ...preview,
+      activities: orders.map((order) => {
+        const value = order.quantity * order.unitPrice;
+        const date = new Date(order.date);
+
+        return {
+          ...order,
+          account: undefined,
+          accountId: order.accountId,
+          accountUserId: undefined,
+          comment: order.comment,
+          createdAt: new Date(),
+          date,
+          feeInAssetProfileCurrency: order.fee,
+          feeInBaseCurrency: order.fee,
+          id: '',
+          isDraft: false,
+          SymbolProfile: {
+            dataSource: order.dataSource || 'MANUAL',
+            symbol: order.symbol,
+            currency: order.currency,
+            activitiesCount: undefined,
+            assetClass: order.assetClass,
+            assetSubClass: order.assetSubClass,
+            countries: undefined,
+            createdAt: undefined,
+            holdings: undefined,
+            id: undefined,
+            isActive: true,
+            sectors: undefined,
+            updatedAt: undefined
+          },
+          symbolProfileId: undefined,
+          tagIds: order.tags,
+          tags: undefined,
+          unitPriceInAssetProfileCurrency: order.unitPrice,
+          updateAccountBalance: order.updateAccountBalance,
+          updatedAt: new Date(),
+          userId: this.request.user.id,
+          value,
+          valueInBaseCurrency: value
+        };
+      })
+    };
   }
 }

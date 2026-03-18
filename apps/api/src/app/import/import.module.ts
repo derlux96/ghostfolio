@@ -20,6 +20,7 @@ import { Module } from '@nestjs/common';
 
 import { ImportController } from './import.controller';
 import { ImportService } from './import.service';
+import { ImportTrService } from './import-tr.service';
 
 @Module({
   controllers: [ImportController],
@@ -42,6 +43,6 @@ import { ImportService } from './import.service';
     TransformDataSourceInRequestModule,
     TransformDataSourceInResponseModule
   ],
-  providers: [ImportService]
+  providers: [ImportService, ImportTrService]
 })
 export class ImportModule {}
