@@ -1,0 +1,42 @@
+[Mi 18. Mär 12:21:33 CET 2026] Starting Claude Code task
+  Prompt: prompts/test-runner.md
+  Branch: feature/test-runner
+---
+Von github.com:derlux96/ghostfolio
+ * [neuer Branch]        feature/disable-extended-prisma-client -> myfork/feature/disable-extended-prisma-client
+ * [neuer Branch]        feature/migrate-from-angular-material-design-2-to-3 -> myfork/feature/migrate-from-angular-material-design-2-to-3
+ * [neuer Branch]        feature/optimize-get-range-query-in-market-data-service -> myfork/feature/optimize-get-range-query-in-market-data-service
+ * [neuer Branch]        feature/rename-subscription-to-subscriptions-in-database-schema -> myfork/feature/rename-subscription-to-subscriptions-in-database-schema
+ * [neuer Branch]        feature/rename-user-to-user-in-subscription-database-schema -> myfork/feature/rename-user-to-user-in-subscription-database-schema
+ * [neuer Branch]        feature/upgrade-nx-to-version-21.1.2 -> myfork/feature/upgrade-nx-to-version-21.1.2
+ * [neuer Branch]        main                   -> myfork/main
+ * [neuer Branch]        next                   -> myfork/next
+ * [neuer Branch]        pr/4926                -> myfork/pr/4926
+ * [neuer Branch]        pr/4975                -> myfork/pr/4975
+ * [neuer Branch]        pr/6182                -> myfork/pr/6182
+ * [neuer Branch]        release/2.162.0-beta.0 -> myfork/release/2.162.0-beta.0
+ * [neuer Branch]        release/2.162.0-beta.1 -> myfork/release/2.162.0-beta.1
+ * [neuer Branch]        release/2.171.0-beta.0 -> myfork/release/2.171.0-beta.0
+ * [neuer Branch]        release/2.171.0-beta.1 -> myfork/release/2.171.0-beta.1
+ * [neuer Branch]        release/2.177.0-beta.0 -> myfork/release/2.177.0-beta.0
+ * [neuer Branch]        release/2.177.0-beta.1 -> myfork/release/2.177.0-beta.1
+ * [neuer Branch]        release/2.215.0-beta.0 -> myfork/release/2.215.0-beta.0
+ * [neuer Branch]        task/update-locales    -> myfork/task/update-locales
+Zu Zweig »main« gewechselt
+Ihr Branch ist auf demselben Stand wie 'origin/main'.
+Von github.com:derlux96/ghostfolio
+ * branch                main       -> FETCH_HEAD
+Bereits aktuell.
+Creating new branch feature/test-runner...
+Zu neuem Branch 'feature/test-runner' gewechselt
+[Mi 18. Mär 12:21:36 CET 2026] Starting Claude Code...
+✅ Changes committed successfully:
+
+**Commit `1131be921`: `chore: add custom fork version marker`**
+
+Changes to `.env.example`:
+1. Added comment at top: `# Custom fork for Lux - German investor portfolio`
+2. Added env variable in VARIOUS section: `GHOSTFOLIO_VERSION=2.250.0-custom`
+
+The runner script verification is complete!
+[Mi 18. Mär 12:22:14 CET 2026] Claude Code finished in 0m 38s
