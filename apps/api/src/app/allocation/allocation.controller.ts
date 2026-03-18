@@ -44,8 +44,7 @@ export class AllocationController {
   @UseGuards(AuthGuard('jwt'), HasPermissionGuard)
   public async setAllocationTargets(@Body() data: SetAllocationTargetsDto) {
     return this.allocationService.setAllocationTargets({
-      targets: data.targets,
-      userId: this.request.user.id
+      targets: data.targets
     });
   }
 }

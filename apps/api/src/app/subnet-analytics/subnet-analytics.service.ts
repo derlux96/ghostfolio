@@ -9,14 +9,14 @@ import { Injectable, Logger } from '@nestjs/common';
 
 const TAOSTATS_API = 'https://dash.taostats.io/api';
 
-// Known subnet tokens with CoinGecko IDs
+// Known subnet tokens with CoinGecko IDs (netuid → CoinGecko mapping)
 const SUBNET_TOKENS: Record<
   number,
   { id: string; symbol: string; name: string }
 > = {
-  8: { id: 'affine', symbol: 'AFFINE', name: 'Affine' },
-  23: { id: 'templar', symbol: 'TEMPLAR', name: 'Templar' },
-  38: { id: 'hippius', symbol: 'HIPPIUS', name: 'Hippius' }
+  3: { id: 'templar', symbol: 'TAO', name: 'Templar' },
+  75: { id: 'hippius', symbol: 'HIPPI', name: 'Hippius' },
+  120: { id: 'affine', symbol: 'AFFINE', name: 'Affine' }
 };
 
 const COINGECKO_API = 'https://api.coingecko.com/api/v3';
@@ -59,7 +59,7 @@ export class SubnetAnalyticsService {
           metadata: s.metadata as SubnetData['metadata'],
           emission: (s.emission as number) ?? 0,
           projected_emission: s.projected_emission as number | undefined,
-          tao_flow: (s.tao_flow as number) ?? 0,
+          tao_flow: (s.ema_tao_flow as number) ?? 0,
           net_flow_1_day: (s.net_flow_1_day as number) ?? 0,
           net_flow_7_days: (s.net_flow_7_days as number) ?? 0,
           net_flow_30_days: (s.net_flow_30_days as number) ?? 0,
