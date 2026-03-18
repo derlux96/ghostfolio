@@ -895,4 +895,32 @@ export class DataService {
       (window as any).info = info;
     });
   }
+
+  public createSavingsPlan(data: any) {
+    return this.http.post('/api/v1/savings-plans', data);
+  }
+
+  public deleteSavingsPlan(aId: string) {
+    return this.http.delete(`/api/v1/savings-plans/${aId}`);
+  }
+
+  public fetchSavingsPlanSummary() {
+    return this.http.get('/api/v1/savings-plans/summary');
+  }
+
+  public fetchSavingsPlans() {
+    return this.http.get('/api/v1/savings-plans');
+  }
+
+  public updateSavingsPlan(aId: string, data: any) {
+    return this.http.put(`/api/v1/savings-plans/${aId}`, data);
+  }
+
+  public fetchSubnets() {
+    return this.http.get('/api/v1/subnet-analytics/subnets');
+  }
+
+  public fetchSubnetRankings(period: string = '7d') {
+    return this.http.get(`/api/v1/subnet-analytics/rankings?period=${period}`);
+  }
 }

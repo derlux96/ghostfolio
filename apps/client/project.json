@@ -216,9 +216,7 @@
       "options": {
         "buildTarget": "client:build",
         "proxyConfig": "apps/client/proxy.conf.json",
-        "ssl": true,
-        "sslCert": "apps/client/localhost.cert",
-        "sslKey": "apps/client/localhost.pem"
+        "ssl": false
       },
       "configurations": {
         "development-ca": {

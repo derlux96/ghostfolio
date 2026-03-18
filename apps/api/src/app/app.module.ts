@@ -57,6 +57,8 @@ import { LogoModule } from './logo/logo.module';
 import { PlatformModule } from './platform/platform.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { RedisCacheModule } from './redis-cache/redis-cache.module';
+import { SavingsPlanModule } from './savings-plan/savings-plan.module';
+import { SubnetAnalyticsModule } from './subnet-analytics/subnet-analytics.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { SymbolModule } from './symbol/symbol.module';
 import { UserModule } from './user/user.module';
@@ -167,6 +169,8 @@ import { UserModule } from './user/user.module';
       serveRoot: '/.well-known'
     }),
     SitemapModule,
+    SavingsPlanModule,
+    SubnetAnalyticsModule,
     SubscriptionModule,
     SymbolModule,
     TagsModule,

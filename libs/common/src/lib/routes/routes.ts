@@ -155,6 +155,16 @@ export const internalRoutes: Record<string, InternalRoute> = {
     },
     title: $localize`Portfolio`
   },
+  savingsPlans: {
+    path: 'savings-plans',
+    routerLink: ['/savings-plans'],
+    title: $localize`Savings Plans`
+  },
+  subnetAnalytics: {
+    path: 'subnet-analytics',
+    routerLink: ['/subnet-analytics'],
+    title: $localize`Subnet Analytics`
+  },
   webauthn: {
     excludeFromAssistant: true,
     path: 'webauthn',

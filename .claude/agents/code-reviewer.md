@@ -1,7 +1,7 @@
 ---
 name: code-reviewer
 description: Expert code review specialist. Proactively reviews code for quality, security, and maintainability. Use immediately after writing or modifying code. MUST BE USED for all code changes.
-tools: ["Read", "Grep", "Glob", "Bash"]
+tools: ['Read', 'Grep', 'Glob', 'Bash']
 model: sonnet
 ---
 
@@ -122,10 +122,14 @@ useEffect(() => {
 
 ```tsx
 // BAD: Using index as key with reorderable list
-{items.map((item, i) => <ListItem key={i} item={item} />)}
+{
+  items.map((item, i) => <ListItem key={i} item={item} />);
+}
 
 // GOOD: Stable unique key
-{items.map(item => <ListItem key={item.id} item={item} />)}
+{
+  items.map((item) => <ListItem key={item.id} item={item} />);
+}
 ```
 
 ### Node.js/Backend Patterns (HIGH)
@@ -144,7 +148,9 @@ When reviewing backend code:
 // BAD: N+1 query pattern
 const users = await db.query('SELECT * FROM users');
 for (const user of users) {
-  user.posts = await db.query('SELECT * FROM posts WHERE user_id = $1', [user.id]);
+  user.posts = await db.query('SELECT * FROM posts WHERE user_id = $1', [
+    user.id
+  ]);
 }
 
 // GOOD: Single query with JOIN or batch
@@ -233,5 +239,6 @@ When reviewing AI-generated changes, prioritize:
 4. Unnecessary model-cost-inducing complexity
 
 Cost-awareness check:
+
 - Flag workflows that escalate to higher-cost models without clear reasoning need.
 - Recommend defaulting to lower-cost tiers for deterministic refactors.

@@ -1,0 +1,351 @@
+<div class="savings-plans-container">
+  <!-- Header -->
+  <div class="page-header">
+    <h1>Savings Plans</h1>
+    <button
+      class="add-button"
+      color="primary"
+      mat-raised-button
+      (click)="openCreateForm()"
+    >
+      <mat-icon>add</mat-icon>
+      Add Plan
+    </button>
+  </div>
+
+  <!-- Create/Edit Form -->
+  <div class="form-card-wrapper" [class.form-open]="showForm">
+    <mat-card *ngIf="showForm" class="form-card">
+      <mat-card-header>
+        <mat-icon class="form-icon" mat-card-avatar>{{
+          isEditing ? 'edit' : 'add_circle'
+        }}</mat-icon>
+        <mat-card-title>{{
+          isEditing ? 'Edit Savings Plan' : 'Create Savings Plan'
+        }}</mat-card-title>
+        <mat-card-subtitle>{{
+          isEditing
+            ? 'Update your savings plan details'
+            : 'Set up a new recurring savings plan'
+        }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="form-grid">
+          <!-- Name -->
+          <mat-form-field class="form-field full-width">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              placeholder="e.g. Vanguard S&P 500"
+              [(ngModel)]="formData.name"
+            />
+          </mat-form-field>
+
+          <!-- ISIN -->
+          <mat-form-field class="form-field full-width">
+            <mat-label>ISIN (optional)</mat-label>
+            <input
+              matInput
+              placeholder="e.g. IE00B3XXRP09"
+              [(ngModel)]="formData.isin"
+            />
+          </mat-form-field>
+
+          <!-- Amount -->
+          <mat-form-field class="form-field">
+            <mat-label>Amount (EUR)</mat-label>
+            <input
+              matInput
+              min="0"
+              step="0.01"
+              type="number"
+              [(ngModel)]="formData.amount"
+            />
+            <span matTextSuffix>€</span>
+          </mat-form-field>
+
+          <!-- Interval -->
+          <mat-form-field class="form-field">
+            <mat-label>Interval</mat-label>
+            <mat-select [(ngModel)]="formData.interval">
+              <mat-option
+                *ngFor="let interval of availableIntervals"
+                [value]="interval.value"
+              >
+                {{ interval.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Day of Month -->
+          <mat-form-field class="form-field">
+            <mat-label>Day of Month</mat-label>
+            <input
+              matInput
+              max="28"
+              min="1"
+              type="number"
+              [(ngModel)]="formData.dayOfMonth"
+            />
+          </mat-form-field>
+
+          <!-- Category -->
+          <mat-form-field class="form-field">
+            <mat-label>Category</mat-label>
+            <mat-select [(ngModel)]="formData.category">
+              <mat-option value="">None</mat-option>
+              <mat-option
+                *ngFor="let cat of availableCategories"
+                [value]="cat.value"
+              >
+                {{ cat.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Start Date -->
+          <mat-form-field class="form-field">
+            <mat-label>Start Date</mat-label>
+            <input matInput type="date" [(ngModel)]="formData.startDate" />
+          </mat-form-field>
+
+          <!-- Active toggle -->
+          <div class="form-field toggle-field">
+            <mat-slide-toggle color="primary" [(ngModel)]="formData.isActive">
+              {{ formData.isActive ? 'Active' : 'Inactive' }}
+            </mat-slide-toggle>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end" class="form-actions">
+        <button mat-button (click)="closeForm()">Cancel</button>
+        <button
+          class="submit-button"
+          color="primary"
+          mat-raised-button
+          [disabled]="isSubmitting"
+          (click)="onSubmit()"
+        >
+          <mat-icon *ngIf="isSubmitting" class="spin">sync</mat-icon>
+          {{ isEditing ? 'Update' : 'Create' }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Summary Cards -->
+  <div *ngIf="summary" class="summary-cards">
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="summary-value">{{ summary.totalPlans }}</div>
+        <div class="summary-label">Active Plans</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="summary-card highlight">
+      <mat-card-content>
+        <div class="summary-value">
+          {{ summary.totalMonthly | currency: 'EUR' : 'symbol' : '1.2-2' }}
+        </div>
+        <div class="summary-label">Monthly Total</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card
+      *ngFor="let cat of summary.byCategory | keyvalue"
+      class="summary-card"
+    >
+      <mat-card-content>
+        <div class="summary-value" [style.color]="getCategoryColor(cat.key)">
+          {{ cat.value | currency: 'EUR' : 'symbol' : '1.2-2' }}
+        </div>
+        <div class="summary-label">{{ cat.key }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Filters -->
+  <div *ngIf="summary" class="filters">
+    <mat-chip-set>
+      <mat-chip
+        *ngFor="
+          let cat of ['ALL', 'GOLD', 'DIVIDEND', 'SPEC', 'GROWTH', 'RUSSIA']
+        "
+        [color]="filterCategory === cat ? 'primary' : 'default'"
+        [highlighted]="filterCategory === cat"
+        (click)="filterCategory = cat"
+      >
+        {{ cat === 'ALL' ? 'All' : cat }}
+      </mat-chip>
+    </mat-chip-set>
+    <mat-chip-set>
+      <mat-chip
+        *ngFor="let status of ['ALL', 'ACTIVE', 'INACTIVE']"
+        [color]="filterStatus === status ? 'primary' : 'default'"
+        [highlighted]="filterStatus === status"
+        (click)="filterStatus = status"
+      >
+        {{ status }}
+      </mat-chip>
+    </mat-chip-set>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <!-- Empty State -->
+  <div
+    *ngIf="!isLoading && filteredPlans.length === 0 && !showForm"
+    class="empty-state"
+  >
+    <mat-icon class="empty-icon">savings</mat-icon>
+    <h3>No savings plans yet</h3>
+    <p>
+      Start by creating your first savings plan to track your monthly
+      investments.
+    </p>
+    <button color="primary" mat-raised-button (click)="openCreateForm()">
+      <mat-icon>add</mat-icon>
+      Create First Plan
+    </button>
+  </div>
+
+  <!-- Plans Table -->
+  <mat-card *ngIf="!isLoading && filteredPlans.length > 0" class="table-card">
+    <mat-card-content>
+      <table class="savings-table" mat-table [dataSource]="filteredPlans">
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef mat-header-cell>Name</th>
+          <td *matCellDef="let plan" mat-cell>
+            <span class="plan-name" [class.inactive]="!plan.isActive">
+              {{ plan.name }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- ISIN -->
+        <ng-container matColumnDef="isin">
+          <th *matHeaderCellDef mat-header-cell>ISIN</th>
+          <td *matCellDef="let plan" class="isin-cell" mat-cell>
+            {{ plan.isin || '—' }}
+          </td>
+        </ng-container>
+
+        <!-- Amount -->
+        <ng-container matColumnDef="amount">
+          <th *matHeaderCellDef mat-header-cell>Amount</th>
+          <td *matCellDef="let plan" class="amount-cell" mat-cell>
+            {{ plan.amount | currency: 'EUR' : 'symbol' : '1.2-2' }}
+          </td>
+        </ng-container>
+
+        <!-- Interval -->
+        <ng-container matColumnDef="interval">
+          <th *matHeaderCellDef mat-header-cell>Interval</th>
+          <td *matCellDef="let plan" mat-cell>
+            {{ getIntervalLabel(plan.interval) }}
+          </td>
+        </ng-container>
+
+        <!-- Day of Month -->
+        <ng-container matColumnDef="dayOfMonth">
+          <th *matHeaderCellDef mat-header-cell>Day</th>
+          <td *matCellDef="let plan" mat-cell>
+            {{ plan.dayOfMonth }}
+          </td>
+        </ng-container>
+
+        <!-- Category -->
+        <ng-container matColumnDef="category">
+          <th *matHeaderCellDef mat-header-cell>Category</th>
+          <td *matCellDef="let plan" mat-cell>
+            <span
+              *ngIf="plan.category"
+              class="category-badge"
+              [style.backgroundColor]="getCategoryColor(plan.category) + '22'"
+              [style.color]="getCategoryColor(plan.category)"
+            >
+              {{ plan.category }}
+            </span>
+            <span *ngIf="!plan.category" class="category-badge other">—</span>
+          </td>
+        </ng-container>
+
+        <!-- Active -->
+        <ng-container matColumnDef="isActive">
+          <th *matHeaderCellDef mat-header-cell>Status</th>
+          <td *matCellDef="let plan" mat-cell>
+            <mat-slide-toggle
+              [checked]="plan.isActive"
+              (change)="toggleActive(plan)"
+            >
+            </mat-slide-toggle>
+          </td>
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th *matHeaderCellDef mat-header-cell></th>
+          <td *matCellDef="let plan" mat-cell>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openEditForm(plan)">
+                <mat-icon>edit</mat-icon> Edit
+              </button>
+              <button
+                class="delete-action"
+                mat-menu-item
+                (click)="deletePlan(plan)"
+              >
+                <mat-icon>delete</mat-icon> Delete
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr
+          *matRowDef="let row; columns: displayedColumns"
+          mat-row
+          [class.inactive-row]="!row.isActive"
+        ></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Monthly Execution Calendar -->
+  <mat-card
+    *ngIf="!isLoading && filteredPlans.length > 0"
+    class="calendar-card"
+  >
+    <mat-card-title>Monthly Execution</mat-card-title>
+    <mat-card-content>
+      <div class="calendar-grid">
+        <div
+          *ngFor="
+            let day of [
+              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+              20, 21, 22, 23, 24, 25, 26, 27, 28
+            ]
+          "
+          class="calendar-day"
+          [class.has-plan]="getPlansForDay(day).length > 0"
+        >
+          <span class="day-number">{{ day }}</span>
+          <div *ngIf="getPlansForDay(day).length > 0" class="day-plans">
+            <span
+              *ngFor="let plan of getPlansForDay(day)"
+              class="day-plan-chip"
+              [style.borderLeftColor]="getCategoryColor(plan.category)"
+            >
+              {{ plan.amount | number: '1.0-0' }}€
+            </span>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

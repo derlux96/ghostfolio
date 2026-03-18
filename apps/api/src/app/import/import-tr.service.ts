@@ -46,11 +46,11 @@ export class ImportTrService {
    * Parse Trade Republic CSV and return preview
    */
   public async parseTrCsv(csvData: string): Promise<TrImportPreview> {
-    const errors: Array<{
+    const errors: {
       row: number;
       message: string;
       rawRow?: string;
-    }> = [];
+    }[] = [];
 
     let rows: string[];
     try {
@@ -341,7 +341,7 @@ export class ImportTrService {
   private async convertTransaction(
     transaction: TrParsedTransaction,
     accountId: string | undefined,
-    tags: Array<{ id: string; name: string }>
+    tags: { id: string; name: string }[]
   ): Promise<CreateOrderDto | null> {
     // Map TR transaction type to Ghostfolio type
     let gfType: Type;
@@ -373,7 +373,7 @@ export class ImportTrService {
 
     // Get category mapping for auto-tagging
     const categoryMapping = getCategoryForIsin(transaction.isin);
-    let tagIds: string[] = [];
+    const tagIds: string[] = [];
 
     if (categoryMapping) {
       const matchingTag = tags.find((t) => t.name === categoryMapping.tagName);

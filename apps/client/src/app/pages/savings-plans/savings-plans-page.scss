@@ -1,0 +1,273 @@
+.savings-plans-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 300;
+      margin: 0;
+    }
+
+    .add-button {
+      mat-icon {
+        margin-right: 6px;
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  // Form card with slide animation
+  .form-card-wrapper {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
+    transition:
+      max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease,
+      margin-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.form-open {
+      max-height: 800px;
+      opacity: 1;
+      margin-bottom: 24px;
+    }
+
+    .form-card {
+      border-top: 3px solid #009688;
+
+      .form-icon {
+        font-size: 40px;
+        width: 40px;
+        height: 40px;
+        color: #009688;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+
+        @media (max-width: 600px) {
+          grid-template-columns: 1fr;
+        }
+
+        .form-field {
+          &.full-width {
+            grid-column: 1 / -1;
+          }
+        }
+
+        .toggle-field {
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .form-actions {
+        padding: 8px 24px 16px;
+
+        .submit-button {
+          background-color: #009688;
+          color: white;
+          margin-left: 8px;
+
+          .spin {
+            animation: spin 1s linear infinite;
+            margin-right: 6px;
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+
+    .summary-card {
+      text-align: center;
+
+      .summary-value {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .summary-label {
+        font-size: 0.85rem;
+        color: rgba(0, 0, 0, 0.54);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      &.highlight .summary-value {
+        color: #4caf50;
+      }
+    }
+  }
+
+  .filters {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    padding: 48px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 64px 24px;
+    color: rgba(0, 0, 0, 0.54);
+
+    .empty-icon {
+      font-size: 64px;
+      width: 64px;
+      height: 64px;
+      opacity: 0.3;
+    }
+
+    h3 {
+      font-weight: 400;
+      margin: 16px 0 8px;
+    }
+
+    p {
+      margin-bottom: 24px;
+    }
+  }
+
+  .table-card {
+    margin-bottom: 24px;
+    overflow-x: auto;
+
+    .savings-table {
+      width: 100%;
+
+      .plan-name {
+        font-weight: 500;
+
+        &.inactive {
+          color: rgba(0, 0, 0, 0.38);
+          text-decoration: line-through;
+        }
+      }
+
+      .isin-cell {
+        font-family: monospace;
+        font-size: 0.85rem;
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .amount-cell {
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .category-badge {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+
+        &.other {
+          background-color: #f5f5f5;
+          color: #999;
+        }
+      }
+
+      tr.inactive-row {
+        opacity: 0.5;
+      }
+
+      .delete-action {
+        color: #f44336;
+      }
+    }
+  }
+
+  .calendar-card {
+    margin-bottom: 24px;
+
+    mat-card-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+
+      .calendar-day {
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 6px;
+        min-height: 48px;
+        position: relative;
+
+        &.has-plan {
+          background-color: #f8f9fa;
+          border-color: #e0e0e0;
+        }
+
+        .day-number {
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: rgba(0, 0, 0, 0.54);
+        }
+
+        .day-plans {
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+          margin-top: 2px;
+        }
+
+        .day-plan-chip {
+          font-size: 0.6rem;
+          padding: 1px 3px;
+          border-left: 3px solid;
+          background: rgba(0, 0, 0, 0.03);
+          border-radius: 2px;
+          cursor: default;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

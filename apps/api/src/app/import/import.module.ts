@@ -18,9 +18,9 @@ import { TagModule } from '@ghostfolio/api/services/tag/tag.module';
 
 import { Module } from '@nestjs/common';
 
+import { ImportTrService } from './import-tr.service';
 import { ImportController } from './import.controller';
 import { ImportService } from './import.service';
-import { ImportTrService } from './import-tr.service';
 
 @Module({
   controllers: [ImportController],

@@ -1,4 +1,5 @@
 # Ghostfolio Custom Fork Implementation Plan
+
 **For:** Lux (German investor on Trade Republic)
 **Portfolio:** ~51,591 EUR, 40 positions, 26 savings plans (~890 EUR/month)
 **Goal:** 3,000 EUR/month dividends in ~20 years (currently 1,251 EUR/year)
@@ -8,6 +9,7 @@
 ## Architecture Overview
 
 Ghostfolio is an **Nx monorepo** with:
+
 - **Backend:** NestJS API (`/apps/api/src`)
 - **Frontend:** Angular 17+ (`/apps/client/src`)
 - **Database:** PostgreSQL with Prisma ORM
@@ -18,11 +20,13 @@ Ghostfolio is an **Nx monorepo** with:
 ## FEATURE 1: Enhanced Dividend Dashboard
 
 ### What Exists
+
 - Basic dividend tracking in `/apps/api/src/app/import/import.service.ts` (lines 59-100)
 - Dividends shown in Analysis page with monthly/yearly grouping
 - `dividendsByGroup` in `GfAnalysisPageComponent`
 
 ### What Needs Building
+
 1. **Dedicated Dividend Dashboard Page** (NEW)
    - Monthly dividend tracking calendar
    - Forward dividend yield projection
@@ -44,6 +48,7 @@ Ghostfolio is an **Nx monorepo** with:
      - `dividend-summary.component` - Annual overview
 
 ### Files to Create/Modify
+
 ```
 NEW: /apps/api/src/app/dividend/
   - dividend.controller.ts (new controller)
@@ -66,6 +71,7 @@ MODIFY: /prisma/schema.prisma
 ```
 
 ### Estimated Time
+
 - Backend: 12 hours
 - Frontend: 16 hours
 - Testing: 6 hours
@@ -76,10 +82,12 @@ MODIFY: /prisma/schema.prisma
 ## FEATURE 2: Savings Plan Tracking
 
 ### What Exists
+
 - Basic Account tracking in `/apps/api/src/app/account/`
 - No dedicated savings plan functionality
 
 ### What Needs Building
+
 1. **Savings Plan Data Model** (NEW)
    - Store 26 savings plans with individual rates
    - Track monthly contributions per plan
@@ -97,7 +105,8 @@ MODIFY: /prisma/schema.prisma
    - Reconcile imported activities with plans
 
 ### Files to Create/Modify
-```
+
+````
 NEW: /apps/api/src/app/savings-plan/
   - savings-plan.controller.ts
   - savings-plan.service.ts
@@ -141,9 +150,10 @@ MODIFY: /apps/api/src/app/import/import.service.ts
 
 MODIFY: /apps/client/src/app/pages/accounts/
   - Add savings plan view tab
-```
+````
 
 ### Estimated Time
+
 - Backend: 16 hours
 - Frontend: 20 hours
 - Testing: 8 hours
@@ -154,11 +164,13 @@ MODIFY: /apps/client/src/app/pages/accounts/
 ## FEATURE 3: Custom Allocation View
 
 ### What Exists
+
 - Allocations page at `/apps/client/src/app/pages/portfolio/allocations/`
 - Supports: Platform, Currency, Asset Class, Country, Continent
 - Uses existing `Tag` system for categorization
 
 ### What Needs Building
+
 1. **Custom Tag-Based Categories**
    - Create Lux-specific tags: Gold, Dividend, Spec, Russia, Growth
    - Set target allocations per category
@@ -175,7 +187,8 @@ MODIFY: /apps/client/src/app/pages/accounts/
    - Rebalancing recommendations
 
 ### Files to Create/Modify
-```
+
+````
 NEW: /apps/api/src/app/allocation/
   - allocation.controller.ts
   - allocation.service.ts (rebalancing logic)
@@ -205,9 +218,10 @@ MODIFY: /prisma/schema.prisma
 MODIFY: /apps/client/src/app/pages/portfolio/allocations/
   - Add custom category tab
   - Integrate with existing charts
-```
+````
 
 ### Estimated Time
+
 - Backend: 10 hours
 - Frontend: 14 hours
 - Testing: 6 hours
@@ -218,11 +232,13 @@ MODIFY: /apps/client/src/app/pages/portfolio/allocations/
 ## FEATURE 4: Trade Republic CSV Import
 
 ### What Exists
+
 - Generic import in `/apps/api/src/app/import/import.service.ts`
 - CSV parsing capabilities exist
 - Manual activity entry
 
 ### What Needs Building
+
 1. **Trade Republic CSV Parser** (NEW)
    - Parse TR export format (headers, date format, decimal separator)
    - Handle TR-specific fields:
@@ -244,6 +260,7 @@ MODIFY: /apps/client/src/app/pages/portfolio/allocations/
    - Bulk category assignment
 
 ### Files to Create/Modify
+
 ```
 NEW: /apps/api/src/app/import/
   - import-tr.service.ts (TR-specific parser)
@@ -265,12 +282,14 @@ NEW: /prisma/schema.prisma (optional)
 ```
 
 ### Trade Republic CSV Format Example
+
 ```csv
 Datum;ISIN;Typ;Stücknummer;Stück;Währung;Kurs;Betrag;Gebühr;Summe
 01.01.2024;IE00B4L5Y983;Kauf;123456;10;EUR;100.00;1000.00;1.00;1001.00
 ```
 
 ### Files to Create/Modify
+
 ```
 Estimated Time
 - Parser development: 12 hours
@@ -285,10 +304,12 @@ Estimated Time
 ## FEATURE 5: Telegram Integration
 
 ### What Exists
+
 - Twitter bot service in `/apps/api/src/app/services/twitter-bot/` (can use as template)
 - No Telegram integration exists
 
 ### What Needs Building
+
 1. **Telegram Bot API**
    - Bot registration and webhook handling
    - User authentication (chat_id mapping)
@@ -306,7 +327,8 @@ Estimated Time
    - Custom message format
 
 ### Files to Create/Modify
-```
+
+````
 NEW: /apps/api/src/app/telegram/
   - telegram.controller.ts (webhook)
   - telegram.service.ts (bot logic)
@@ -336,9 +358,10 @@ MODIFY: /prisma/schema.prisma
 
 NEW: /apps/client/src/app/components/telegram-settings/
   - telegram-settings.component.ts/html/scss
-```
+````
 
 ### Telegram Commands
+
 ```
 /summary - Current portfolio value and P&L
 /dividends - Recent dividend payments
@@ -348,6 +371,7 @@ NEW: /apps/client/src/app/components/telegram-settings/
 ```
 
 ### Estimated Time
+
 - Bot setup: 8 hours
 - Notification service: 12 hours
 - Frontend settings: 6 hours
@@ -359,10 +383,12 @@ NEW: /apps/client/src/app/components/telegram-settings/
 ## FEATURE 6: German Tax Reporting
 
 ### What Exists
+
 - Basic export functionality in `/apps/api/src/app/export/`
 - No German-specific tax calculations
 
 ### What Needs Building
+
 1. **German Tax Calculation Engine**
    - Teilfreistellung (partial exemption) calculation
    - Vorabpauschale (anticipatory tax) tracking
@@ -380,7 +406,8 @@ NEW: /apps/client/src/app/components/telegram-settings/
    - PDF summary for records
 
 ### Files to Create/Modify
-```
+
+````
 NEW: /apps/api/src/app/tax/
   - tax.controller.ts
   - tax.service.ts (German tax logic)
@@ -415,9 +442,10 @@ MODIFY: /prisma/schema.prisma
       user              User     @relation(fields: [userId], ...)
     }
     ```
-```
+````
 
 ### German Tax Rules to Implement
+
 1. **Teilfreistellung** (partial exemption for dividends/foreign funds)
    - 30% for Aktien (stocks)
    - 15% for certain ETFs/mixed funds
@@ -431,6 +459,7 @@ MODIFY: /prisma/schema.prisma
    - Kirchensteuer: 8-9% on Abgeltungsteuer (if applicable)
 
 ### Estimated Time
+
 - Tax engine: 20 hours
 - Frontend dashboard: 12 hours
 - Export functionality: 8 hours
@@ -442,21 +471,25 @@ MODIFY: /prisma/schema.prisma
 ## IMPLEMENTATION PRIORITY & PHASING
 
 ### Phase 1: Core Functionality (Weeks 1-4)
+
 1. **Trade Republic CSV Import** (38h) - Foundation for data entry
 2. **Custom Allocation View** (30h) - Basic portfolio organization
 3. **Tag-based Categories** (included above)
 
 ### Phase 2: Enhanced Tracking (Weeks 5-8)
+
 4. **Savings Plan Tracking** (44h) - Manage 26 plans
 5. **Enhanced Dividend Dashboard** (34h) - Goal tracking
 
 ### Phase 3: Automation & Reporting (Weeks 9-12)
+
 6. **Telegram Integration** (32h) - Notifications
 7. **German Tax Reporting** (48h) - Compliance
 
 ---
 
 ## TOTAL ESTIMATE
+
 - **Phase 1:** 68 hours (~2 weeks)
 - **Phase 2:** 78 hours (~2.5 weeks)
 - **Phase 3:** 80 hours (~2.5 weeks)
@@ -468,13 +501,16 @@ MODIFY: /prisma/schema.prisma
 ## TECHNICAL NOTES
 
 ### Database Changes
+
 All Prisma schema changes require migration:
+
 ```bash
 cd /tmp/ghostfolio-fork
 npx prisma migrate dev --name custom_features
 ```
 
 ### Environment Variables Needed
+
 ```
 TELEGRAM_BOT_TOKEN=xxx
 TELEGRAM_WEBHOOK_SECRET=xxx
@@ -483,15 +519,17 @@ BASE_CURRENCY=EUR
 ```
 
 ### Dependencies to Add
+
 ```json
 {
-  "telegraf": "4.x",          // Telegram bot framework
-  "csv-parse": "5.x",         // Enhanced CSV parsing
-  "ical": "latest"            // Calendar export (if needed)
+  "telegraf": "4.x", // Telegram bot framework
+  "csv-parse": "5.x", // Enhanced CSV parsing
+  "ical": "latest" // Calendar export (if needed)
 }
 ```
 
 ### Development Workflow
+
 1. Create feature branch: `git checkout -b feature/xyz`
 2. Implement changes
 3. Run tests: `nx test api && nx test client`
@@ -520,6 +558,6 @@ BASE_CURRENCY=EUR
 
 ---
 
-*Generated: 2025-03-18*
-*Repository: https://github.com/ghostfolio/ghostfolio*
-*Target User: Lux (derlux96)*
+_Generated: 2025-03-18_
+_Repository: https://github.com/ghostfolio/ghostfolio_
+_Target User: Lux (derlux96)_

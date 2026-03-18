@@ -12,8 +12,10 @@
           <mat-card-title i18n>Allocation Targets & Drift</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p i18n class="mb-3">
-            Set target allocations for your portfolio tags and monitor drift. The system will suggest rebalancing actions when allocations deviate from targets.
+          <p class="mb-3" i18n>
+            Set target allocations for your portfolio tags and monitor drift.
+            The system will suggest rebalancing actions when allocations deviate
+            from targets.
           </p>
           <div class="allocation-summary">
             <div class="row">
@@ -35,8 +37,10 @@
                 />
               </div>
               <div class="col-md-4">
-                <span class="status-indicator"
-                      [class.has-drift]="(allocationData$ | async)?.hasDrift">
+                <span
+                  class="status-indicator"
+                  [class.has-drift]="(allocationData$ | async)?.hasDrift"
+                >
                   @if ((allocationData$ | async)?.hasDrift) {
                     <span i18n>⚠️ Rebalancing Recommended</span>
                   } @else {
@@ -75,22 +79,30 @@
                 </div>
                 <div class="allocation-bar">
                   <div class="bar-background">
-                    <div class="bar-fill current"
-                         [style.width.%]="item.currentAllocation * 100"
-                         [style.background-color]="item.color">
-                    </div>
-                    <div class="bar-fill target"
-                         [style.left.%]="item.targetAllocation * 100"
-                         [style.background-color]="item.color">
-                    </div>
+                    <div
+                      class="bar-fill current"
+                      [style.background-color]="item.color"
+                      [style.width.%]="item.currentAllocation * 100"
+                    ></div>
+                    <div
+                      class="bar-fill target"
+                      [style.background-color]="item.color"
+                      [style.left.%]="item.targetAllocation * 100"
+                    ></div>
                   </div>
                 </div>
                 <div class="allocation-details">
                   <span class="current-value">
-                    Current: {{ item.currentValue | currency:'USD':'symbol':'1.2-2' }}
+                    Current:
+                    {{
+                      item.currentValue | currency: 'USD' : 'symbol' : '1.2-2'
+                    }}
                   </span>
                   <span class="target-value">
-                    Target: {{ item.targetValue | currency:'USD':'symbol':'1.2-2' }}
+                    Target:
+                    {{
+                      item.targetValue | currency: 'USD' : 'symbol' : '1.2-2'
+                    }}
                   </span>
                   <span [class]="getDriftClass(item.drift)">
                     Drift: {{ (item.drift * 100).toFixed(2) }}%
@@ -115,48 +127,64 @@
         <mat-card-content>
           @if (allocationData$ | async; as data) {
             @if (data.rebalancingActions.length > 0) {
-              <table mat-table [dataSource]="data.rebalancingActions"
-                     class="w-100">
+              <table
+                class="w-100"
+                mat-table
+                [dataSource]="data.rebalancingActions"
+              >
                 <ng-container matColumnDef="tagName">
-                  <th mat-header-cell *matHeaderCellDef i18n>Tag</th>
-                  <td mat-cell *matCellDef="let action">{{ action.tagName }}</td>
+                  <th *matHeaderCellDef i18n mat-header-cell>Tag</th>
+                  <td *matCellDef="let action" mat-cell>
+                    {{ action.tagName }}
+                  </td>
                 </ng-container>
 
                 <ng-container matColumnDef="currentAllocation">
-                  <th mat-header-cell *matHeaderCellDef i18n>Current</th>
-                  <td mat-cell *matCellDef="let action">
+                  <th *matHeaderCellDef i18n mat-header-cell>Current</th>
+                  <td *matCellDef="let action" mat-cell>
                     {{ (action.currentAllocation * 100).toFixed(1) }}%
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="targetAllocation">
-                  <th mat-header-cell *matHeaderCellDef i18n>Target</th>
-                  <td mat-cell *matCellDef="let action">
+                  <th *matHeaderCellDef i18n mat-header-cell>Target</th>
+                  <td *matCellDef="let action" mat-cell>
                     {{ (action.targetAllocation * 100).toFixed(1) }}%
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="type">
-                  <th mat-header-cell *matHeaderCellDef i18n>Action</th>
-                  <td mat-cell *matCellDef="let action">
-                    <span [class]="action.type === 'BUY' ? 'buy-action' : 'sell-action'">
+                  <th *matHeaderCellDef i18n mat-header-cell>Action</th>
+                  <td *matCellDef="let action" mat-cell>
+                    <span
+                      [class]="
+                        action.type === 'BUY' ? 'buy-action' : 'sell-action'
+                      "
+                    >
                       {{ getActionType(action) }}
                     </span>
                   </td>
                 </ng-container>
 
                 <ng-container matColumnDef="amount">
-                  <th mat-header-cell *matHeaderCellDef i18n>Amount</th>
-                  <td mat-cell *matCellDef="let action">
-                    {{ action.amount | currency:'USD':'symbol':'1.2-2' }}
+                  <th *matHeaderCellDef i18n mat-header-cell>Amount</th>
+                  <td *matCellDef="let action" mat-cell>
+                    {{ action.amount | currency: 'USD' : 'symbol' : '1.2-2' }}
                   </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns; trackBy: trackByIndex"></tr>
+                <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+                <tr
+                  *matRowDef="
+                    let row;
+                    columns: displayedColumns;
+                    trackBy: trackByIndex
+                  "
+                  mat-row
+                ></tr>
               </table>
             } @else {
-              <p i18n class="text-center text-muted py-4">
+              <p class="text-center text-muted py-4" i18n>
                 No rebalancing needed. All allocations are within tolerance.
               </p>
             }

@@ -1,0 +1,316 @@
+.subnet-analytics-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  .page-header-content {
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .title-icon {
+        color: #5b4a9e;
+      }
+    }
+
+    .page-subtitle {
+      color: rgba(0, 0, 0, 0.54);
+      margin: 4px 0 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+
+  .summary-card {
+    mat-card-content {
+      padding: 8px 0;
+
+      .card-label {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.54);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+
+      .card-value {
+        font-size: 28px;
+        font-weight: 700;
+        color: #212121;
+      }
+
+      .card-unit {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.54);
+        margin-top: 2px;
+      }
+    }
+  }
+}
+
+.loading-container {
+  padding: 48px 0;
+  text-align: center;
+
+  .loading-text {
+    color: rgba(0, 0, 0, 0.54);
+    margin-top: 12px;
+  }
+}
+
+.error-container {
+  text-align: center;
+  padding: 48px 0;
+  color: #f44336;
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
+}
+
+.filters-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+
+  .search-field {
+    flex: 0 0 300px;
+  }
+
+  .sort-chips {
+    mat-chip-set {
+      mat-chip {
+        cursor: pointer;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+.results-info {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.54);
+  margin-bottom: 12px;
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.subnet-table {
+  width: 100%;
+
+  th.mat-mdc-header-cell {
+    font-weight: 600;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.54);
+    white-space: nowrap;
+    padding: 12px 16px;
+
+    .header-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      opacity: 0.5;
+    }
+  }
+
+  td.mat-mdc-cell {
+    padding: 10px 16px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .col-rank {
+    width: 40px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.38);
+  }
+
+  .col-name {
+    min-width: 200px;
+  }
+
+  .col-number {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .col-price {
+    min-width: 120px;
+    text-align: right;
+  }
+
+  .subnet-row {
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+}
+
+// Subnet name cell
+.subnet-name-cell {
+  cursor: pointer;
+
+  .subnet-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+  }
+
+  .netuid-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background-color: #f3e5f5;
+    color: #5b4a9e;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .subnet-meta {
+    margin-top: 2px;
+
+    .modality-tag {
+      display: inline-block;
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.38);
+      background: rgba(0, 0, 0, 0.04);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+  }
+}
+
+// Emission cell
+.emission-cell {
+  .emission-value {
+    display: block;
+    font-weight: 500;
+  }
+
+  .emission-bar {
+    width: 80px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    margin-top: 4px;
+
+    .emission-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #7c4dff, #536dfe);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+  }
+}
+
+// Flow classes
+.flow-positive {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.flow-negative {
+  color: #f44336;
+  font-weight: 500;
+}
+
+.flow-neutral {
+  color: rgba(0, 0, 0, 0.38);
+}
+
+// Token price
+.token-price-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+
+  .token-symbol {
+    font-weight: 700;
+    font-size: 13px;
+    color: #5b4a9e;
+  }
+
+  .token-usd {
+    font-weight: 500;
+  }
+
+  .token-change {
+    font-size: 12px;
+  }
+}
+
+.token-pending {
+  .pending-icon {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.26);
+  }
+}
+
+.node-detail {
+  display: block;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.38);
+  font-weight: 400;
+}
+
+// Responsive
+@media (max-width: 960px) {
+  .subnet-analytics-container {
+    padding: 16px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filters-row {
+    flex-direction: column;
+    align-items: stretch;
+
+    .search-field {
+      flex: 1;
+    }
+  }
+}

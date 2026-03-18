@@ -1,10 +1,11 @@
 ---
 paths:
-  - "**/*.ts"
-  - "**/*.tsx"
-  - "**/*.js"
-  - "**/*.jsx"
+  - '**/*.ts'
+  - '**/*.tsx'
+  - '**/*.js'
+  - '**/*.jsx'
 ---
+
 # TypeScript/JavaScript Coding Style
 
 > This file extends [common/coding-style.md](../common/coding-style.md) with TypeScript/JavaScript specific content.
@@ -44,14 +45,14 @@ export function formatUser(user: User): string {
 
 ```typescript
 interface User {
-  id: string
-  email: string
+  id: string;
+  email: string;
 }
 
-type UserRole = 'admin' | 'member'
+type UserRole = 'admin' | 'member';
 type UserWithRole = User & {
-  role: UserRole
-}
+  role: UserRole;
+};
 ```
 
 ### Avoid `any`
@@ -109,7 +110,7 @@ function UserCard({ user, onSelect }: UserCardProps) {
  * @returns {string}
  */
 export function formatUser(user) {
-  return `${user.firstName} ${user.lastName}`
+  return `${user.firstName} ${user.lastName}`;
 }
 ```
 
@@ -144,33 +145,33 @@ Use async/await with try-catch and narrow unknown errors safely:
 
 ```typescript
 interface User {
-  id: string
-  email: string
+  id: string;
+  email: string;
 }
 
-declare function riskyOperation(userId: string): Promise<User>
+declare function riskyOperation(userId: string): Promise<User>;
 
 function getErrorMessage(error: unknown): string {
   if (error instanceof Error) {
-    return error.message
+    return error.message;
   }
 
-  return 'Unexpected error'
+  return 'Unexpected error';
 }
 
 const logger = {
   error: (message: string, error: unknown) => {
     // Replace with your production logger (for example, pino or winston).
   }
-}
+};
 
 async function loadUser(userId: string): Promise<User> {
   try {
-    const result = await riskyOperation(userId)
-    return result
+    const result = await riskyOperation(userId);
+    return result;
   } catch (error: unknown) {
-    logger.error('Operation failed', error)
-    throw new Error(getErrorMessage(error))
+    logger.error('Operation failed', error);
+    throw new Error(getErrorMessage(error));
   }
 }
 ```
@@ -180,16 +181,16 @@ async function loadUser(userId: string): Promise<User> {
 Use Zod for schema-based validation and infer types from the schema:
 
 ```typescript
-import { z } from 'zod'
+import { z } from 'zod';
 
 const userSchema = z.object({
   email: z.string().email(),
   age: z.number().int().min(0).max(150)
-})
+});
 
-type UserInput = z.infer<typeof userSchema>
+type UserInput = z.infer<typeof userSchema>;
 
-const validated: UserInput = userSchema.parse(input)
+const validated: UserInput = userSchema.parse(input);
 ```
 
 ## Console.log

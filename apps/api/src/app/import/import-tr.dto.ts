@@ -92,11 +92,11 @@ export class TrImportDto {
  */
 export interface TrImportPreview {
   activities: TrParsedTransaction[];
-  errors: Array<{
+  errors: {
     row: number;
     message: string;
     rawRow?: string;
-  }>;
+  }[];
   summary: {
     totalActivities: number;
     buyCount: number;

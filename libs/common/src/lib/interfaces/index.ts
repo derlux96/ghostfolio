@@ -90,6 +90,18 @@ import type {
   PublicKeyCredentialRequestOptionsJSON
 } from './simplewebauthn.interface';
 import type { Statistics } from './statistics.interface';
+import type {
+  SubnetAnalyticsSummary,
+  SubnetData,
+  SubnetPortfolio,
+  SubnetPortfolioResponse,
+  SubnetRanking,
+  SubnetRankingsResponse,
+  SubnetsResponse,
+  SubnetTokenPrice,
+  SubnetTokenPricesResponse,
+  TaoStatsSubnet
+} from './subnet-analytics.interface';
 import type { SubscriptionOffer } from './subscription-offer.interface';
 import type { SymbolItem } from './symbol-item.interface';
 import type { SymbolMetrics } from './symbol-metrics.interface';
@@ -186,11 +198,21 @@ export {
   RuleSettings,
   ScraperConfiguration,
   Statistics,
+  SubnetAnalyticsSummary,
+  SubnetData,
+  SubnetPortfolio,
+  SubnetPortfolioResponse,
+  SubnetRanking,
+  SubnetRankingsResponse,
+  SubnetsResponse,
+  SubnetTokenPrice,
+  SubnetTokenPricesResponse,
   SubscriptionOffer,
   SymbolItem,
   SymbolMetrics,
   SystemMessage,
   TabConfiguration,
+  TaoStatsSubnet,
   ToggleOption,
   User,
   UserItem,

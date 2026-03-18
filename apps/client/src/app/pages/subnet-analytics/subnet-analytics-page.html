@@ -1,0 +1,273 @@
+<div class="subnet-analytics-container">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="page-header-content">
+      <h1 class="page-title">
+        <mat-icon class="title-icon">hub</mat-icon>
+        TAO Subnet Analytics
+      </h1>
+      <p class="page-subtitle">
+        Bittensor Network Dashboard — Real-time subnet data from TaoStats
+      </p>
+    </div>
+    <button color="primary" mat-raised-button (click)="loadData()">
+      <mat-icon>refresh</mat-icon> Refresh
+    </button>
+  </div>
+
+  <!-- Summary Cards -->
+  <div *ngIf="summary" class="summary-cards">
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="card-label">Total Subnets</div>
+        <div class="card-value">{{ summary.totalSubnets }}</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="card-label">Total Emission</div>
+        <div class="card-value">{{ formatTao(summary.totalEmission) }}</div>
+        <div class="card-unit">TAO/day</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="card-label">Total Tao Flow</div>
+        <div class="card-value">{{ formatTao(summary.totalTaoFlow) }}</div>
+        <div class="card-unit">TAO/day</div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="card-label">Tracked Tokens</div>
+        <div class="card-value">{{ summary.trackedSubnets }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    <p class="loading-text">Loading subnet data from TaoStats API...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="error && !isLoading" class="error-container">
+    <mat-icon color="warn">error_outline</mat-icon>
+    <p>{{ error }}</p>
+    <button color="primary" mat-raised-button (click)="loadData()">
+      Retry
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!isLoading && !error && filteredSubnets.length > 0">
+    <!-- Filters -->
+    <div class="filters-row">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          matInput
+          placeholder="Search subnets..."
+          [(ngModel)]="filterText"
+          (ngModelChange)="onFilterChange()"
+        />
+      </mat-form-field>
+
+      <div class="sort-chips">
+        <mat-chip-set>
+          <mat-chip
+            *ngFor="
+              let opt of [
+                { key: 'emission', label: 'Emission' },
+                { key: 'tao_flow', label: 'Tao Flow' },
+                { key: 'net_flow_1_day', label: '1D Flow' },
+                { key: 'net_flow_7_days', label: '7D Flow' },
+                { key: 'net_flow_30_days', label: '30D Flow' },
+                { key: 'active_keys', label: 'Nodes' }
+              ]
+            "
+            [highlighted]="sortBy === opt.key"
+            (click)="onSortChange(opt.key)"
+          >
+            {{ opt.label }}
+          </mat-chip>
+        </mat-chip-set>
+      </div>
+    </div>
+
+    <!-- Results count -->
+    <div class="results-info">
+      Showing {{ filteredSubnets.length }} of {{ subnets.length }} subnets
+    </div>
+
+    <!-- Subnet Table -->
+    <div class="table-container">
+      <table class="subnet-table" mat-table [dataSource]="filteredSubnets">
+        <!-- Rank Column -->
+        <ng-container matColumnDef="rank">
+          <th *matHeaderCellDef class="col-rank" mat-header-cell>#</th>
+          <td
+            *matCellDef="let element; let i = index"
+            class="col-rank"
+            mat-cell
+          >
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef class="col-name" mat-header-cell>Subnet</th>
+          <td *matCellDef="let element" class="col-name" mat-cell>
+            <div
+              class="subnet-name-cell"
+              (click)="openSubnetDetail(element.netuid)"
+            >
+              <div class="subnet-name">
+                <span class="netuid-badge">{{ element.netuid }}</span>
+                {{ element.name }}
+              </div>
+              <div
+                *ngIf="element.metadata?.github || element.modality"
+                class="subnet-meta"
+              >
+                <span *ngIf="element.modality" class="modality-tag">{{
+                  element.modality
+                }}</span>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Emission Column -->
+        <ng-container matColumnDef="emission">
+          <th *matHeaderCellDef class="col-number" mat-header-cell>
+            Emission
+            <mat-icon class="header-icon" matTooltip="TAO emitted per day"
+              >info_outline</mat-icon
+            >
+          </th>
+          <td *matCellDef="let element" class="col-number" mat-cell>
+            <div class="emission-cell">
+              <span class="emission-value">{{
+                formatTao(element.emission)
+              }}</span>
+              <div class="emission-bar">
+                <div
+                  class="emission-bar-fill"
+                  [style.width.%]="getEmissionShare(element.emission)"
+                ></div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Tao Flow Column -->
+        <ng-container matColumnDef="taoFlow">
+          <th *matHeaderCellDef class="col-number" mat-header-cell>
+            Tao Flow
+            <mat-icon
+              class="header-icon"
+              matTooltip="Net TAO flowing into/out of subnet per day"
+              >info_outline</mat-icon
+            >
+          </th>
+          <td *matCellDef="let element" class="col-number" mat-cell>
+            <span [class]="getFlowClass(element.tao_flow)">
+              {{ element.tao_flow > 0 ? '+' : ''
+              }}{{ formatTao(element.tao_flow) }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- 1D Flow Column -->
+        <ng-container matColumnDef="netFlow1d">
+          <th *matHeaderCellDef class="col-number" mat-header-cell>
+            1D Net Flow
+          </th>
+          <td *matCellDef="let element" class="col-number" mat-cell>
+            <span [class]="getFlowClass(element.net_flow_1_day)">
+              {{ element.net_flow_1_day > 0 ? '+' : ''
+              }}{{ formatTao(element.net_flow_1_day) }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- 7D Flow Column -->
+        <ng-container matColumnDef="netFlow7d">
+          <th *matHeaderCellDef class="col-number" mat-header-cell>
+            7D Net Flow
+          </th>
+          <td *matCellDef="let element" class="col-number" mat-cell>
+            <span [class]="getFlowClass(element.net_flow_7_days)">
+              {{ element.net_flow_7_days > 0 ? '+' : ''
+              }}{{ formatTao(element.net_flow_7_days) }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- 30D Flow Column -->
+        <ng-container matColumnDef="netFlow30d">
+          <th *matHeaderCellDef class="col-number" mat-header-cell>
+            30D Net Flow
+          </th>
+          <td *matCellDef="let element" class="col-number" mat-cell>
+            <span [class]="getFlowClass(element.net_flow_30_days)">
+              {{ element.net_flow_30_days > 0 ? '+' : ''
+              }}{{ formatTao(element.net_flow_30_days) }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Active Keys Column -->
+        <ng-container matColumnDef="activeKeys">
+          <th *matHeaderCellDef class="col-number" mat-header-cell>Nodes</th>
+          <td *matCellDef="let element" class="col-number" mat-cell>
+            {{ element.active_keys || 0 }}
+            <span
+              *ngIf="element.active_miners || element.active_validators"
+              class="node-detail"
+            >
+              ({{ element.active_miners || 0 }} miners,
+              {{ element.active_validators || 0 }} vals)
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Token Price Column -->
+        <ng-container matColumnDef="tokenPrice">
+          <th *matHeaderCellDef class="col-price" mat-header-cell>Token</th>
+          <td *matCellDef="let element" class="col-price" mat-cell>
+            <div *ngIf="element.tokenPrice" class="token-price-cell">
+              <span class="token-symbol">{{ element.tokenPrice.symbol }}</span>
+              <span class="token-usd"
+                >${{ formatNumber(element.tokenPrice.priceUsd, 2) }}</span
+              >
+              <span
+                class="token-change"
+                [class]="getFlowClass(element.tokenPrice.priceChange24h)"
+              >
+                {{ element.tokenPrice.priceChange24h > 0 ? '+' : ''
+                }}{{ formatNumber(element.tokenPrice.priceChange24h, 1) }}%
+              </span>
+            </div>
+            <span
+              *ngIf="!element.tokenPrice && element.subtoken_enabled"
+              class="token-pending"
+            >
+              <mat-icon class="pending-icon">pending</mat-icon>
+            </span>
+          </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr
+          *matRowDef="let row; columns: displayedColumns"
+          class="subnet-row"
+          mat-row
+        ></tr>
+      </table>
+    </div>
+  </div>
+</div>

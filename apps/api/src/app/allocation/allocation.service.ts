@@ -18,7 +18,7 @@ export class AllocationService {
     impersonationId?: string;
     userId: string;
   }): Promise<{
-    items: Array<{
+    items: {
       tagId: string;
       tagName: string;
       currentAllocation: number;
@@ -27,7 +27,7 @@ export class AllocationService {
       targetValue: number;
       color?: string;
       drift: number;
-    }>;
+    }[];
     totalValue: number;
     totalTargetAllocation: number;
     hasDrift: boolean;
@@ -124,7 +124,7 @@ export class AllocationService {
     }
 
     // Build allocation items
-    const items: Array<{
+    const items: {
       tagId: string;
       tagName: string;
       currentAllocation: number;
@@ -133,7 +133,7 @@ export class AllocationService {
       targetValue: number;
       color?: string;
       drift: number;
-    }> = [];
+    }[] = [];
 
     let totalTargetAllocation = 0;
     let hasDrift = false;
@@ -206,11 +206,9 @@ export class AllocationService {
   }
 
   public async setAllocationTargets({
-    targets,
-    userId: _userId
+    targets
   }: {
     targets: AllocationTargetDto[];
-    userId: string;
   }): Promise<void> {
     for (const target of targets) {
       await this.prismaService.tag.update({
