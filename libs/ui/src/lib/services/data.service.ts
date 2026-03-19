@@ -874,6 +874,17 @@ export class DataService {
     );
   }
 
+  public regenerateOwnAccessToken() {
+    return this.http.post<AccessTokenResponse>(
+      '/api/v1/user/access-token/regenerate',
+      {}
+    );
+  }
+
+  public fetchOwnAccessToken() {
+    return this.http.get<AccessTokenResponse>('/api/v1/user/access-token');
+  }
+
   public updateUserAccessToken(aUserId: string) {
     return this.http.post<AccessTokenResponse>(
       `/api/v1/user/${aUserId}/access-token`,

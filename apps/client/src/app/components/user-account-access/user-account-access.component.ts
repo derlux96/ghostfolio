@@ -8,6 +8,7 @@ import { NotificationService } from '@ghostfolio/ui/notifications';
 import { GfPremiumIndicatorComponent } from '@ghostfolio/ui/premium-indicator';
 import { DataService } from '@ghostfolio/ui/services';
 
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -21,10 +22,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { addOutline, eyeOffOutline, eyeOutline } from 'ionicons/icons';
+import {
+  addOutline,
+  copyOutline,
+  eyeOffOutline,
+  eyeOutline,
+  refreshOutline
+} from 'ionicons/icons';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { EMPTY, Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
@@ -36,6 +44,7 @@ import { CreateOrUpdateAccessDialogParams } from './create-or-update-access-dial
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'has-fab' },
   imports: [
+    ClipboardModule,
     GfAccessTableComponent,
     GfPremiumIndicatorComponent,
     IonIcon,
@@ -43,6 +52,7 @@ import { CreateOrUpdateAccessDialogParams } from './create-or-update-access-dial
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     RouterModule
   ],
@@ -54,14 +64,13 @@ import { CreateOrUpdateAccessDialogParams } from './create-or-update-access-dial
 export class GfUserAccountAccessComponent implements OnDestroy, OnInit {
   public accessesGet: Access[];
   public accessesGive: Access[];
+  public currentAccessToken: string;
   public deviceType: string;
   public hasPermissionToCreateAccess: boolean;
   public hasPermissionToDeleteAccess: boolean;
   public hasPermissionToUpdateOwnAccessToken: boolean;
   public isAccessTokenHidden = true;
-  public updateOwnAccessTokenForm = this.formBuilder.group({
-    accessToken: ['', Validators.required]
-  });
+  public isLoadingAccessToken = false;
   public user: User;
 
   private unsubscribeSubject = new Subject<void>();
@@ -119,13 +128,66 @@ export class GfUserAccountAccessComponent implements OnDestroy, OnInit {
         }
       });
 
-    addIcons({ addOutline, eyeOffOutline, eyeOutline });
+    addIcons({
+      addOutline,
+      copyOutline,
+      eyeOffOutline,
+      eyeOutline,
+      refreshOutline
+    });
   }
 
   public ngOnInit() {
     this.deviceType = this.deviceService.getDeviceInfo().deviceType;
 
     this.update();
+    this.fetchAccessToken();
+  }
+
+  public onFetchAccessToken() {
+    this.fetchAccessToken();
+  }
+
+  public onRegenerateAccessToken() {
+    this.notificationService.confirm({
+      confirmFn: () => {
+        this.isLoadingAccessToken = true;
+        this.dataService
+          .regenerateOwnAccessToken()
+          .pipe(
+            catchError(() => {
+              this.notificationService.alert({
+                title: $localize`Oops! There was an error generating your security token.`
+              });
+
+              this.isLoadingAccessToken = false;
+              this.changeDetectorRef.markForCheck();
+
+              return EMPTY;
+            }),
+            takeUntil(this.unsubscribeSubject)
+          )
+          .subscribe(({ accessToken }) => {
+            this.currentAccessToken = accessToken;
+            this.isLoadingAccessToken = false;
+            this.isAccessTokenHidden = true;
+
+            this.notificationService.alert({
+              message: accessToken,
+              title: $localize`New Security Token Generated`
+            });
+
+            this.changeDetectorRef.markForCheck();
+          });
+      },
+      confirmType: ConfirmationDialogType.Warn,
+      title: $localize`Do you really want to generate a new security token? Your old token will no longer work.`
+    });
+  }
+
+  public ngOnDestroy() {
+    this.unsubscribeSubject.next();
+    this.unsubscribeSubject.complete();
   }
 
   public onDeleteAccess(aId: string) {
@@ -139,49 +201,10 @@ export class GfUserAccountAccessComponent implements OnDestroy, OnInit {
       });
   }
 
-  public onGenerateAccessToken() {
-    this.notificationService.confirm({
-      confirmFn: () => {
-        this.dataService
-          .updateOwnAccessToken({
-            accessToken: this.updateOwnAccessTokenForm.get('accessToken').value
-          })
-          .pipe(
-            catchError(() => {
-              this.notificationService.alert({
-                title: $localize`Oops! Incorrect Security Token.`
-              });
-
-              return EMPTY;
-            }),
-            takeUntil(this.unsubscribeSubject)
-          )
-          .subscribe(({ accessToken }) => {
-            this.notificationService.alert({
-              discardFn: () => {
-                this.userService.signOut();
-
-                document.location.href = `/${document.documentElement.lang}`;
-              },
-              message: accessToken,
-              title: $localize`Security token`
-            });
-          });
-      },
-      confirmType: ConfirmationDialogType.Warn,
-      title: $localize`Do you really want to generate a new security token?`
-    });
-  }
-
   public onUpdateAccess(aId: string) {
     this.router.navigate([], {
       queryParams: { accessId: aId, editDialog: true }
     });
-  }
-
-  public ngOnDestroy() {
-    this.unsubscribeSubject.next();
-    this.unsubscribeSubject.complete();
   }
 
   private openCreateAccessDialog() {
@@ -265,6 +288,32 @@ export class GfUserAccountAccessComponent implements OnDestroy, OnInit {
       .subscribe((accesses) => {
         this.accessesGive = accesses;
 
+        this.changeDetectorRef.markForCheck();
+      });
+  }
+
+  private fetchAccessToken() {
+    if (!this.hasPermissionToUpdateOwnAccessToken) {
+      return;
+    }
+
+    this.isLoadingAccessToken = true;
+
+    this.dataService
+      .fetchOwnAccessToken()
+      .pipe(
+        catchError(() => {
+          // If fetching fails (e.g., user doesn't have a token yet), just set to empty
+          this.currentAccessToken = '';
+          this.isLoadingAccessToken = false;
+          this.changeDetectorRef.markForCheck();
+          return EMPTY;
+        }),
+        takeUntil(this.unsubscribeSubject)
+      )
+      .subscribe(({ accessToken }) => {
+        this.currentAccessToken = accessToken;
+        this.isLoadingAccessToken = false;
         this.changeDetectorRef.markForCheck();
       });
   }

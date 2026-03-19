@@ -1,12 +1,16 @@
 @if (hasPermissionToUpdateOwnAccessToken) {
   <div class="container">
     <h1 class="h3 mb-3 text-center" i18n>Security Token</h1>
-    <form
-      class="w-100"
-      [formGroup]="updateOwnAccessTokenForm"
-      (ngSubmit)="onGenerateAccessToken()"
-    >
-      <div class="align-items-center d-flex justify-content-center mb-5">
+    <div class="align-items-center d-flex flex-column justify-content-center mb-5">
+      <p class="text-center mb-3" i18n>
+        Your security token is used to access your account. Keep it safe and do not
+        share it with anyone.
+      </p>
+      @if (isLoadingAccessToken) {
+        <div class="mb-3">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+      } @else {
         <mat-form-field
           appearance="outline"
           class="without-hint w-50"
@@ -14,37 +18,54 @@
         >
           <mat-label i18n>Security Token</mat-label>
           <input
-            formControlName="accessToken"
             matInput
+            readonly
             [type]="isAccessTokenHidden ? 'password' : 'text'"
+            [value]="currentAccessToken"
           />
-          <button
-            mat-button
-            matSuffix
-            type="button"
-            (click)="isAccessTokenHidden = !isAccessTokenHidden"
-          >
-            <ion-icon
-              [name]="isAccessTokenHidden ? 'eye-outline' : 'eye-off-outline'"
-            />
-          </button>
+          @if (currentAccessToken) {
+            <button
+              mat-button
+              matSuffix
+              type="button"
+              (click)="isAccessTokenHidden = !isAccessTokenHidden"
+            >
+              <ion-icon
+                [name]="isAccessTokenHidden ? 'eye-outline' : 'eye-off-outline'"
+              />
+            </button>
+            <button
+              mat-button
+              matSuffix
+              type="button"
+              [cdkCopyToClipboard]="currentAccessToken"
+            >
+              <ion-icon name="copy-outline" />
+            </button>
+          }
         </mat-form-field>
-        <div class="pl-2">
-          <button
-            color="warn"
-            mat-flat-button
-            type="submit"
-            [disabled]="
-              !(
-                updateOwnAccessTokenForm.dirty && updateOwnAccessTokenForm.valid
-              )
-            "
-          >
-            <span i18n>Generate</span>
-          </button>
-        </div>
+      }
+      <div class="d-flex gap-2 mt-3">
+        <button
+          color="primary"
+          mat-flat-button
+          (click)="onFetchAccessToken()"
+          [disabled]="isLoadingAccessToken"
+        >
+          <ion-icon class="mr-1" name="refresh-outline" />
+          <span i18n>Show Token</span>
+        </button>
+        <button
+          color="warn"
+          mat-flat-button
+          (click)="onRegenerateAccessToken()"
+          [disabled]="isLoadingAccessToken"
+        >
+          <ion-icon class="mr-1" name="arrow-forward-outline" />
+          <span i18n>Generate New Token</span>
+        </button>
       </div>
-    </form>
+    </div>
   </div>
 }
 

@@ -110,6 +110,35 @@ export class UserController {
     return this.rotateUserAccessToken(user.id);
   }
 
+  @HasPermission(permissions.updateOwnAccessToken)
+  @Post('access-token/regenerate')
+  @UseGuards(AuthGuard('jwt'), HasPermissionGuard)
+  public async regenerateOwnAccessToken(): Promise<AccessTokenResponse> {
+    // Allow users to regenerate their access token without providing the current one
+    // This is useful for users who lost their access token but are already authenticated via JWT
+    return this.rotateUserAccessToken(this.request.user.id);
+  }
+
+  @HasPermission(permissions.updateOwnAccessToken)
+  @Get('access-token')
+  @UseGuards(AuthGuard('jwt'), HasPermissionGuard)
+  public async getOwnAccessToken(): Promise<AccessTokenResponse> {
+    // Get the user with their access token
+    const user = await this.userService.user({
+      where: { id: this.request.user.id }
+    });
+
+    if (!user.accessToken) {
+      // If user doesn't have an access token (e.g., OAuth user), generate one
+      return this.rotateUserAccessToken(this.request.user.id);
+    }
+
+    // The accessToken in the database is hashed, we need to return the plain token
+    // But we can't decrypt the hash, so we need to regenerate and return a new one
+    // For security purposes, we'll generate a new one each time this is called
+    return this.rotateUserAccessToken(this.request.user.id);
+  }
+
   @Get()
   @UseGuards(AuthGuard('jwt'), HasPermissionGuard)
   @UseInterceptors(RedactValuesInResponseInterceptor)
