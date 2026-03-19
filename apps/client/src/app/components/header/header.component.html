@@ -58,6 +58,51 @@
           >Accounts</a
         >
       </li>
+      <li class="list-inline-item">
+        <a
+          class="d-none d-sm-block"
+          i18n
+          mat-flat-button
+          [ngClass]="{
+            'font-weight-bold':
+              currentRoute === internalRoutes.savingsPlans.path,
+            'text-decoration-underline':
+              currentRoute === internalRoutes.savingsPlans.path
+          }"
+          [routerLink]="routerLinkSavingsPlans"
+          >Savings Plans</a
+        >
+      </li>
+      <li class="list-inline-item">
+        <a
+          class="d-none d-sm-block"
+          i18n
+          mat-flat-button
+          [ngClass]="{
+            'font-weight-bold':
+              currentRoute === internalRoutes.dividend.path,
+            'text-decoration-underline':
+              currentRoute === internalRoutes.dividend.path
+          }"
+          [routerLink]="routerLinkDividend"
+          >Dividends</a
+        >
+      </li>
+      <li class="list-inline-item">
+        <a
+          class="d-none d-sm-block"
+          i18n
+          mat-flat-button
+          [ngClass]="{
+            'font-weight-bold':
+              currentRoute === internalRoutes.subnetAnalytics.path,
+            'text-decoration-underline':
+              currentRoute === internalRoutes.subnetAnalytics.path
+          }"
+          [routerLink]="routerLinkSubnetAnalytics"
+          >Subnets</a
+        >
+      </li>
       @if (hasPermissionToAccessAdminControl) {
         <li class="list-inline-item">
           <a
@@ -268,7 +313,28 @@
             >Accounts</a
           >
           <a
+            class="d-flex d-sm-none"
             i18n
+            mat-menu-item
+            [ngClass]="{
+              'font-weight-bold':
+                currentRoute === internalRoutes.savingsPlans.path
+            }"
+            [routerLink]="routerLinkSavingsPlans"
+            >Savings Plans</a
+          >
+          <a
+            class="d-flex d-sm-none"
+            i18n
+            mat-menu-item
+            [ngClass]="{
+              'font-weight-bold':
+                currentRoute === internalRoutes.subnetAnalytics.path
+            }"
+            [routerLink]="routerLinkSubnetAnalytics"
+            >Subnets</a
+          >
+          <a
             mat-menu-item
             [ngClass]="{
               'font-weight-bold': currentRoute === internalRoutes.account.path

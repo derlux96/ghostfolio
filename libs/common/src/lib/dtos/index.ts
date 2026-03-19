@@ -1,3 +1,7 @@
+import {
+  AllocationTargetDto,
+  SetAllocationTargetsDto
+} from './allocation-targets.dto';
 import { AuthDeviceDto } from './auth-device.dto';
 import { CreateAccessDto } from './create-access.dto';
 import { CreateAccountBalanceDto } from './create-account-balance.dto';
@@ -10,6 +14,7 @@ import { CreatePlatformDto } from './create-platform.dto';
 import { CreateTagDto } from './create-tag.dto';
 import { CreateWatchlistItemDto } from './create-watchlist-item.dto';
 import { DeleteOwnUserDto } from './delete-own-user.dto';
+import { CustomAllocationResponse, RebalancingAction } from './rebalancing.dto';
 import { TransferBalanceDto } from './transfer-balance.dto';
 import { UpdateAccessDto } from './update-access.dto';
 import { UpdateAccountDto } from './update-account.dto';
@@ -24,6 +29,7 @@ import { UpdateTagDto } from './update-tag.dto';
 import { UpdateUserSettingDto } from './update-user-setting.dto';
 
 export {
+  AllocationTargetDto,
   AuthDeviceDto,
   CreateAccessDto,
   CreateAccountBalanceDto,
@@ -35,7 +41,10 @@ export {
   CreatePlatformDto,
   CreateTagDto,
   CreateWatchlistItemDto,
+  CustomAllocationResponse,
   DeleteOwnUserDto,
+  RebalancingAction,
+  SetAllocationTargetsDto,
   TransferBalanceDto,
   UpdateAccessDto,
   UpdateAccountDto,

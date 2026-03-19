@@ -56,6 +56,7 @@ import {
   UserItem,
   WatchlistResponse
 } from '@ghostfolio/common/interfaces';
+import { CustomAllocationResponse } from '@ghostfolio/common/interfaces';
 import { filterGlobalPermissions } from '@ghostfolio/common/permissions';
 import type {
   AiPromptMode,
@@ -746,6 +747,10 @@ export class DataService {
     return this.http.get<Tag[]>('/api/v1/tags');
   }
 
+  public fetchCustomAllocations(): Observable<CustomAllocationResponse> {
+    return this.http.get<CustomAllocationResponse>('/api/v1/allocation/custom');
+  }
+
   public fetchWatchlist() {
     return this.http.get<WatchlistResponse>('/api/v1/watchlist');
   }
@@ -889,5 +894,54 @@ export class DataService {
 
       (window as any).info = info;
     });
+  }
+
+  public createSavingsPlan(data: any) {
+    return this.http.post('/api/v1/savings-plans', data);
+  }
+
+  public deleteSavingsPlan(aId: string) {
+    return this.http.delete(`/api/v1/savings-plans/${aId}`);
+  }
+
+  public fetchSavingsPlanSummary() {
+    return this.http.get('/api/v1/savings-plans/summary');
+  }
+
+  public fetchSavingsPlans() {
+    return this.http.get('/api/v1/savings-plans');
+  }
+
+  public updateSavingsPlan(aId: string, data: any) {
+    return this.http.put(`/api/v1/savings-plans/${aId}`, data);
+  }
+
+  public fetchDividendDashboard() {
+    return this.http.get('/api/v1/dividend/dashboard');
+  }
+
+  public fetchDividendProjection() {
+    return this.http.get('/api/v1/dividend/projection');
+  }
+
+  public fetchDividendCalendar(year?: number) {
+    const params = year ? `?year=${year}` : '';
+    return this.http.get(`/api/v1/dividend/calendar${params}`);
+  }
+
+  public fetchDividendGoal() {
+    return this.http.get('/api/v1/dividend/goal');
+  }
+
+  public postDividendGoal(monthlyTarget: number) {
+    return this.http.post('/api/v1/dividend/goal', { monthlyTarget });
+  }
+
+  public fetchSubnets() {
+    return this.http.get('/api/v1/subnet-analytics/subnets');
+  }
+
+  public fetchSubnetRankings(period: string = '7d') {
+    return this.http.get(`/api/v1/subnet-analytics/rankings?period=${period}`);
   }
 }

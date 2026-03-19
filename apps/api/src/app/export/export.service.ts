@@ -155,10 +155,12 @@ export class ExportService {
           })
         );
       })
-      .map(({ id, name }) => {
+      .map(({ color, id, name, targetAllocation }) => {
         return {
+          color,
           id,
-          name
+          name,
+          targetAllocation
         };
       });
 

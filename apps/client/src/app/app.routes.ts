@@ -119,6 +119,25 @@ export const routes: Routes = [
       import('./pages/resources/resources-page.routes').then((m) => m.routes)
   },
   {
+    path: internalRoutes.savingsPlans.path,
+    loadChildren: () =>
+      import('./pages/savings-plans/savings-plans-page.routes').then(
+        (m) => m.routes
+      )
+  },
+  {
+    path: internalRoutes.dividend.path,
+    loadChildren: () =>
+      import('./pages/dividend/dividend-page.routes').then((m) => m.routes)
+  },
+  {
+    path: internalRoutes.subnetAnalytics.path,
+    loadChildren: () =>
+      import('./pages/subnet-analytics/subnet-analytics-page.routes').then(
+        (m) => m.routes
+      )
+  },
+  {
     path: publicRoutes.start.path,
     loadChildren: () =>
       import('./pages/landing/landing-page.routes').then((m) => m.routes)

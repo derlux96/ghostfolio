@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateTagDto {
   @IsString()
@@ -6,6 +6,14 @@ export class UpdateTagDto {
 
   @IsString()
   name: string;
+
+  @IsOptional()
+  @IsString()
+  color?: string;
+
+  @IsOptional()
+  @IsNumber()
+  targetAllocation?: number;
 
   @IsOptional()
   @IsString()

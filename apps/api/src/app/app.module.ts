@@ -31,11 +31,13 @@ import { AccessModule } from './access/access.module';
 import { AccountModule } from './account/account.module';
 import { ActivitiesModule } from './activities/activities.module';
 import { AdminModule } from './admin/admin.module';
+import { AllocationModule } from './allocation/allocation.module';
 import { AppController } from './app.controller';
 import { AssetModule } from './asset/asset.module';
 import { AuthDeviceModule } from './auth-device/auth-device.module';
 import { AuthModule } from './auth/auth.module';
 import { CacheModule } from './cache/cache.module';
+import { DividendModule } from './dividend/dividend.module';
 import { AiModule } from './endpoints/ai/ai.module';
 import { ApiKeysModule } from './endpoints/api-keys/api-keys.module';
 import { AssetsModule } from './endpoints/assets/assets.module';
@@ -56,6 +58,8 @@ import { LogoModule } from './logo/logo.module';
 import { PlatformModule } from './platform/platform.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { RedisCacheModule } from './redis-cache/redis-cache.module';
+import { SavingsPlanModule } from './savings-plan/savings-plan.module';
+import { SubnetAnalyticsModule } from './subnet-analytics/subnet-analytics.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { SymbolModule } from './symbol/symbol.module';
 import { UserModule } from './user/user.module';
@@ -63,11 +67,12 @@ import { UserModule } from './user/user.module';
 @Module({
   controllers: [AppController],
   imports: [
-    AdminModule,
     AccessModule,
     AccountModule,
     ActivitiesModule,
+    AdminModule,
     AiModule,
+    AllocationModule,
     ApiKeysModule,
     AssetModule,
     AssetsModule,
@@ -98,11 +103,21 @@ import { UserModule } from './user/user.module';
         ]
       : []),
     BullModule.forRoot({
-      redis: {
-        db: parseInt(process.env.REDIS_DB ?? '0', 10),
-        host: process.env.REDIS_HOST,
-        password: process.env.REDIS_PASSWORD,
-        port: parseInt(process.env.REDIS_PORT ?? '6379', 10)
+      createClient: (type) => {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const Redis = require('ioredis');
+        const isSubscriberLike = ['subscriber', 'bclient'].includes(type);
+        return new Redis({
+          db: parseInt(process.env.REDIS_DB ?? '0', 10),
+          host: process.env.REDIS_HOST || 'localhost',
+          password: process.env.REDIS_PASSWORD || undefined,
+          port: parseInt(process.env.REDIS_PORT ?? '6379', 10),
+          // Bull requires enableReadyCheck=false and maxRetriesPerRequest
+          // to be falsy for subscriber/bclient connections
+          ...(isSubscriberLike
+            ? { enableReadyCheck: false, maxRetriesPerRequest: null }
+            : { maxRetriesPerRequest: null })
+        });
       }
     }),
     CacheModule,
@@ -111,6 +126,7 @@ import { UserModule } from './user/user.module';
     CronModule,
     DataGatheringModule,
     DataProviderModule,
+    DividendModule,
     EventEmitterModule.forRoot(),
     EventsModule,
     ExchangeRateModule,
@@ -135,7 +151,6 @@ import { UserModule } from './user/user.module';
       exclude: [
         `${BULL_BOARD_ROUTE}/*wildcard`,
         '/.well-known/*wildcard',
-        '/api/*wildcard',
         '/sitemap.xml'
       ],
       rootPath: join(__dirname, '..', 'client'),
@@ -165,6 +180,8 @@ import { UserModule } from './user/user.module';
       serveRoot: '/.well-known'
     }),
     SitemapModule,
+    SavingsPlanModule,
+    SubnetAnalyticsModule,
     SubscriptionModule,
     SymbolModule,
     TagsModule,

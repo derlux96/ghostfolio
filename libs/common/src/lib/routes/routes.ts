@@ -137,6 +137,11 @@ export const internalRoutes: Record<string, InternalRoute> = {
         routerLink: ['/portfolio'],
         title: $localize`Analysis`
       },
+      customAllocations: {
+        path: 'custom-allocations',
+        routerLink: ['/portfolio', 'custom-allocations'],
+        title: $localize`Custom Allocations`
+      },
       fire: {
         path: 'fire',
         routerLink: ['/portfolio', 'fire'],
@@ -149,6 +154,21 @@ export const internalRoutes: Record<string, InternalRoute> = {
       }
     },
     title: $localize`Portfolio`
+  },
+  savingsPlans: {
+    path: 'savings-plans',
+    routerLink: ['/savings-plans'],
+    title: $localize`Savings Plans`
+  },
+  dividend: {
+    path: 'dividend',
+    routerLink: ['/dividend'],
+    title: $localize`Dividend Dashboard`
+  },
+  subnetAnalytics: {
+    path: 'subnet-analytics',
+    routerLink: ['/subnet-analytics'],
+    title: $localize`Subnet Analytics`
   },
   webauthn: {
     excludeFromAssistant: true,
