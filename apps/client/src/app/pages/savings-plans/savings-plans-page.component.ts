@@ -41,6 +41,10 @@ export interface SavingsPlanSummary {
   totalMonthly: number;
   byCategory: Record<string, number>;
   byInterval: Record<string, number>;
+  calendar?: Record<
+    number,
+    Array<{ name: string; amount: number; category: string }>
+  >;
 }
 
 export interface SavingsPlanFormData {

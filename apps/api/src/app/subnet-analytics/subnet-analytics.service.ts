@@ -46,7 +46,11 @@ export class SubnetAnalyticsService {
       if (!response.ok) {
         throw new Error(`TaoStats API error: ${response.status}`);
       }
-      const rawSubnets: Record<string, unknown>[] = await response.json();
+      const apiResponse = await response.json();
+      // TaoStats API returns { pagination: {...}, data: [...] }
+      const rawSubnets: Record<string, unknown>[] = Array.isArray(apiResponse)
+        ? apiResponse
+        : (apiResponse?.data ?? []);
 
       // Fetch token prices in parallel
       const tokenPrices = await this.fetchTokenPrices();

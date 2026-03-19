@@ -117,6 +117,25 @@ export class SavingsPlanService {
       byCategory[cat] = (byCategory[cat] || 0) + plan.amount;
     }
 
+    // Generate calendar data - which days have plans
+    const calendar: Record<
+      number,
+      Array<{ name: string; amount: number; category: string }>
+    > = {};
+    for (const plan of plans) {
+      if (plan.interval === 'MONTHLY') {
+        const day = plan.dayOfMonth || 1;
+        if (!calendar[day]) {
+          calendar[day] = [];
+        }
+        calendar[day].push({
+          name: plan.name,
+          amount: plan.amount,
+          category: plan.category || 'OTHER'
+        });
+      }
+    }
+
     return {
       totalPlans: plans.length,
       totalMonthly: Math.round(totalMonthly * 100) / 100,
@@ -127,7 +146,8 @@ export class SavingsPlanService {
         MONTHLY: plans.filter((p) => p.interval === 'MONTHLY').length,
         QUARTERLY: plans.filter((p) => p.interval === 'QUARTERLY').length,
         YEARLY: plans.filter((p) => p.interval === 'YEARLY').length
-      }
+      },
+      calendar
     };
   }
 }

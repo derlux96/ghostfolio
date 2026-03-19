@@ -916,6 +916,27 @@ export class DataService {
     return this.http.put(`/api/v1/savings-plans/${aId}`, data);
   }
 
+  public fetchDividendDashboard() {
+    return this.http.get('/api/v1/dividend/dashboard');
+  }
+
+  public fetchDividendProjection() {
+    return this.http.get('/api/v1/dividend/projection');
+  }
+
+  public fetchDividendCalendar(year?: number) {
+    const params = year ? `?year=${year}` : '';
+    return this.http.get(`/api/v1/dividend/calendar${params}`);
+  }
+
+  public fetchDividendGoal() {
+    return this.http.get('/api/v1/dividend/goal');
+  }
+
+  public postDividendGoal(monthlyTarget: number) {
+    return this.http.post('/api/v1/dividend/goal', { monthlyTarget });
+  }
+
   public fetchSubnets() {
     return this.http.get('/api/v1/subnet-analytics/subnets');
   }

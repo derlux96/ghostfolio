@@ -37,6 +37,7 @@ import { AssetModule } from './asset/asset.module';
 import { AuthDeviceModule } from './auth-device/auth-device.module';
 import { AuthModule } from './auth/auth.module';
 import { CacheModule } from './cache/cache.module';
+import { DividendModule } from './dividend/dividend.module';
 import { AiModule } from './endpoints/ai/ai.module';
 import { ApiKeysModule } from './endpoints/api-keys/api-keys.module';
 import { AssetsModule } from './endpoints/assets/assets.module';
@@ -102,11 +103,21 @@ import { UserModule } from './user/user.module';
         ]
       : []),
     BullModule.forRoot({
-      redis: {
-        db: parseInt(process.env.REDIS_DB ?? '0', 10),
-        host: process.env.REDIS_HOST,
-        password: process.env.REDIS_PASSWORD,
-        port: parseInt(process.env.REDIS_PORT ?? '6379', 10)
+      createClient: (type) => {
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const Redis = require('ioredis');
+        const isSubscriberLike = ['subscriber', 'bclient'].includes(type);
+        return new Redis({
+          db: parseInt(process.env.REDIS_DB ?? '0', 10),
+          host: process.env.REDIS_HOST || 'localhost',
+          password: process.env.REDIS_PASSWORD || undefined,
+          port: parseInt(process.env.REDIS_PORT ?? '6379', 10),
+          // Bull requires enableReadyCheck=false and maxRetriesPerRequest
+          // to be falsy for subscriber/bclient connections
+          ...(isSubscriberLike
+            ? { enableReadyCheck: false, maxRetriesPerRequest: null }
+            : { maxRetriesPerRequest: null })
+        });
       }
     }),
     CacheModule,
@@ -115,6 +126,7 @@ import { UserModule } from './user/user.module';
     CronModule,
     DataGatheringModule,
     DataProviderModule,
+    DividendModule,
     EventEmitterModule.forRoot(),
     EventsModule,
     ExchangeRateModule,
@@ -139,7 +151,6 @@ import { UserModule } from './user/user.module';
       exclude: [
         `${BULL_BOARD_ROUTE}/*wildcard`,
         '/.well-known/*wildcard',
-        '/api/*wildcard',
         '/sitemap.xml'
       ],
       rootPath: join(__dirname, '..', 'client'),

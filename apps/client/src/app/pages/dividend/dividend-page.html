@@ -1,0 +1,185 @@
+<div class="dividend-container">
+  <!-- Header -->
+  <div class="page-header">
+    <h1>Dividend Dashboard</h1>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <!-- Summary Cards -->
+  <div *ngIf="!isLoading && dashboard" class="summary-cards">
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="summary-label">Year to Date</div>
+        <div class="summary-value">
+          {{ dashboard.totalYtd | currency: dashboard.currency : 'symbol' : '1.2-2' }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="summary-label">All Time</div>
+        <div class="summary-value">
+          {{ dashboard.totalAllTime | currency: dashboard.currency : 'symbol' : '1.2-2' }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card">
+      <mat-card-content>
+        <div class="summary-label">Avg. Monthly</div>
+        <div class="summary-value">
+          {{ dashboard.averageMonthly | currency: dashboard.currency : 'symbol' : '1.2-2' }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="summary-card highlight">
+      <mat-card-content>
+        <div class="summary-label">Annual Projection</div>
+        <div class="summary-value">
+          {{ dashboard.annualProjection | currency: dashboard.currency : 'symbol' : '1.2-2' }}
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Goal Progress -->
+  <mat-card *ngIf="!isLoading && goal" class="goal-card">
+    <mat-card-content>
+      <div class="goal-header">
+        <div class="goal-title">
+          <mat-icon>flag</mat-icon>
+          <span>Monthly Dividend Goal</span>
+        </div>
+        <div class="goal-actions" *ngIf="!isEditingGoal">
+          <button mat-icon-button (click)="editGoal()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="!isEditingGoal" class="goal-display">
+        <div class="goal-amounts">
+          <div class="goal-current">
+            <span class="amount">{{ goal.currentMonthly | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+            <span class="label">Current / Month</span>
+          </div>
+          <div class="goal-separator">/</div>
+          <div class="goal-target">
+            <span class="amount">{{ goal.monthlyTarget | currency: 'EUR' : 'symbol' : '1.2-2' }}</span>
+            <span class="label">Target</span>
+          </div>
+        </div>
+        <div class="goal-progress-bar">
+          <div
+            class="goal-progress-fill"
+            [style.width.%="Math.min(goal.progressPercentage, 100)"
+            [style.background-color]="progressColor"
+          ></div>
+        </div>
+        <div class="goal-percentage">
+          {{ goal.progressPercentage | number: '1.1-1' }}%
+        </div>
+      </div>
+
+      <div *ngIf="isEditingGoal" class="goal-edit">
+        <mat-form-field class="goal-input">
+          <mat-label>Monthly Target (€)</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            step="100"
+            [(ngModel)]="newGoalTarget"
+          />
+        </mat-form-field>
+        <div class="goal-edit-actions">
+          <button mat-button (click)="cancelEditGoal()">Cancel</button>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="isSubmittingGoal"
+            (click)="saveGoal()"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Monthly Chart -->
+  <mat-card *ngIf="!isLoading && monthlyData.length > 0" class="chart-card">
+    <mat-card-header>
+      <mat-card-title>Dividend Income by Month</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="bar-chart">
+        <div
+          *ngFor="let item of monthlyData"
+          class="bar-item"
+          [matTooltip]="item.monthName + ' ' + item.year + ': ' + (item.amount | currency: dashboard.currency)"
+        >
+          <div class="bar-label">{{ item.monthName }}</div>
+          <div class="bar-container">
+            <div
+              class="bar-fill"
+              [style.height.%]="(item.amount / getMaxMonthlyAmount()) * 100"
+            ></div>
+          </div>
+          <div class="bar-value">{{ item.amount | number: '1.0-0' }}€</div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Top Holdings -->
+  <mat-card *ngIf="!isLoading && dashboard?.topHoldings?.length > 0" class="holdings-card">
+    <mat-card-header>
+      <mat-card-title>Top Holdings by Dividend Income</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table class="holdings-table" mat-table [dataSource]="dashboard.topHoldings">
+        <!-- Symbol -->
+        <ng-container matColumnDef="symbol">
+          <th *matHeaderCellDef mat-header-cell>Symbol</th>
+          <td *matCellDef="let holding" mat-cell class="symbol-cell">
+            <strong>{{ holding.symbol }}</strong>
+          </td>
+        </ng-container>
+
+        <!-- Name -->
+        <ng-container matColumnDef="name">
+          <th *matHeaderCellDef mat-header-cell>Name</th>
+          <td *matCellDef="let holding" mat-cell>{{ holding.name }}</td>
+        </ng-container>
+
+        <!-- Amount -->
+        <ng-container matColumnDef="amount">
+          <th *matHeaderCellDef mat-header-cell>Annual Dividends</th>
+          <td *matCellDef="let holding" mat-cell class="amount-cell">
+            {{ holding.amount | currency: holding.currency : 'symbol' : '1.2-2' }}
+          </td>
+        </ng-container>
+
+        <!-- Yield -->
+        <ng-container matColumnDef="yield">
+          <th *matHeaderCellDef mat-header-cell>Yield</th>
+          <td *matCellDef="let holding" mat-cell class="yield-cell">
+            <span [class.positive]="holding.yield > 0" class="yield-value">
+              {{ holding.yield | number: '1.2-2' }}%
+            </span>
+          </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns" mat-row></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
