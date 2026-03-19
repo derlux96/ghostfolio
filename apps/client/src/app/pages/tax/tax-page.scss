@@ -1,0 +1,260 @@
+.tax-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .year-selector {
+        width: 120px;
+      }
+    }
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+  }
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    .summary-card {
+      background: var(--gf-card-background);
+      border: 1px solid var(--gf-border-color);
+
+      &.total-card {
+        border: 2px solid var(--gf-primary-color);
+      }
+
+      .summary-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+
+        .summary-icon {
+          font-size: 1.5rem;
+          width: 1.5rem;
+          height: 1.5rem;
+          color: var(--gf-primary-color);
+        }
+
+        .summary-label {
+          font-size: 1.125rem;
+          font-weight: 600;
+        }
+      }
+
+      .summary-amounts {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .summary-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem 0;
+          border-bottom: 1px solid var(--gf-border-color);
+
+          &.highlight {
+            border-bottom: none;
+            padding-top: 0.75rem;
+            font-weight: 500;
+          }
+
+          &.secondary {
+            font-size: 0.875rem;
+            opacity: 0.8;
+          }
+
+          .label {
+            color: var(--gf-text-secondary);
+          }
+
+          .value {
+            font-weight: 600;
+
+            &.tax {
+              color: #f44336;
+            }
+
+            &.positive {
+              color: #4caf50;
+            }
+          }
+        }
+      }
+
+      .summary-total {
+        text-align: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--gf-border-color);
+
+        .total-value {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #f44336;
+        }
+      }
+
+      .summary-count {
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--gf-text-secondary);
+      }
+    }
+  }
+
+  .table-card {
+    background: var(--gf-card-background);
+    border: 1px solid var(--gf-border-color);
+    margin-bottom: 1.5rem;
+
+    mat-card-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--gf-border-color);
+
+      mat-card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+
+    mat-card-content {
+      padding: 0;
+    }
+
+    .tax-table {
+      width: 100%;
+
+      mat-header-cell {
+        font-weight: 600;
+        color: var(--gf-text-secondary);
+      }
+
+      mat-cell {
+        border-bottom: 1px solid var(--gf-border-color);
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .text-muted {
+        color: var(--gf-text-secondary);
+      }
+
+      .positive {
+        color: #4caf50;
+      }
+
+      .negative {
+        color: #f44336;
+      }
+
+      .tax {
+        color: #f44336;
+      }
+
+      .icon-success {
+        color: #4caf50;
+        font-size: 1.25rem;
+        height: 1.25rem;
+        width: 1.25rem;
+      }
+
+      .icon-muted {
+        color: var(--gf-text-secondary);
+        font-size: 1.25rem;
+        height: 1.25rem;
+        width: 1.25rem;
+      }
+
+      small.text-muted {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .empty-state {
+    background: var(--gf-card-background);
+    border: 1px solid var(--gf-border-color);
+    text-align: center;
+
+    .empty-icon {
+      font-size: 4rem;
+      height: 4rem;
+      width: 4rem;
+      color: var(--gf-text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      margin: 1rem 0 0.5rem;
+    }
+
+    p {
+      margin: 0;
+      color: var(--gf-text-secondary);
+    }
+  }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+  .tax-container {
+    .summary-cards {
+      .summary-card {
+        background: #1e1e1e;
+        border-color: #333;
+
+        .summary-amounts .summary-row {
+          border-bottom-color: #333;
+        }
+      }
+    }
+
+    .table-card {
+      background: #1e1e1e;
+      border-color: #333;
+
+      mat-card-header {
+        border-bottom-color: #333;
+      }
+    }
+
+    .empty-state {
+      background: #1e1e1e;
+      border-color: #333;
+    }
+  }
+}

@@ -282,6 +282,7 @@ model User {
   updatedAt     DateTime        @updatedAt
   savingsPlans  SavingsPlan[]
   dividendGoals DividendGoal[]
+  taxEvents     TaxEvent[]
   watchlist     SymbolProfile[] @relation("UserWatchlist")
   SymbolProfile SymbolProfile[]
 
@@ -325,6 +326,30 @@ model DividendGoal {
   user           User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
+}
+
+model TaxEvent {
+  id               String   @id @default(uuid())
+  userId           String
+  type             TaxEventType
+  amount           Float
+  taxAmount        Float
+  teilfreistellung Float
+  date             DateTime
+  relatedOrderId   String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  user             User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([date])
+  @@index([type])
+}
+
+enum TaxEventType {
+  DIVIDEND
+  SALE
+  VORABPAUSCHALE
 }
 
 enum AccessPermission {

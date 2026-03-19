@@ -62,6 +62,7 @@ import { SavingsPlanModule } from './savings-plan/savings-plan.module';
 import { SubnetAnalyticsModule } from './subnet-analytics/subnet-analytics.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { SymbolModule } from './symbol/symbol.module';
+import { TaxModule } from './tax/tax.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -185,6 +186,7 @@ import { UserModule } from './user/user.module';
     SubscriptionModule,
     SymbolModule,
     TagsModule,
+    TaxModule,
     UserModule,
     WatchlistModule
   ],

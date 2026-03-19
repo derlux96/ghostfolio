@@ -94,6 +94,20 @@
           i18n
           mat-flat-button
           [ngClass]="{
+            'font-weight-bold': currentRoute === internalRoutes.tax.path,
+            'text-decoration-underline':
+              currentRoute === internalRoutes.tax.path
+          }"
+          [routerLink]="routerLinkTax"
+          >Tax</a
+        >
+      </li>
+      <li class="list-inline-item">
+        <a
+          class="d-none d-sm-block"
+          i18n
+          mat-flat-button
+          [ngClass]="{
             'font-weight-bold':
               currentRoute === internalRoutes.subnetAnalytics.path,
             'text-decoration-underline':

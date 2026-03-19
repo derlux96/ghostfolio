@@ -131,6 +131,11 @@ export const routes: Routes = [
       import('./pages/dividend/dividend-page.routes').then((m) => m.routes)
   },
   {
+    path: internalRoutes.tax.path,
+    loadChildren: () =>
+      import('./pages/tax/tax-page.routes').then((m) => m.routes)
+  },
+  {
     path: internalRoutes.subnetAnalytics.path,
     loadChildren: () =>
       import('./pages/subnet-analytics/subnet-analytics-page.routes').then(

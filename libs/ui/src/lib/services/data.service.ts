@@ -937,6 +937,28 @@ export class DataService {
     return this.http.post('/api/v1/dividend/goal', { monthlyTarget });
   }
 
+  public fetchTaxSummary(year?: number) {
+    const params = year ? `?year=${year}` : '';
+    return this.http.get(`/api/v1/tax/summary${params}`);
+  }
+
+  public fetchTaxPositions(year?: number) {
+    const params = year ? `?year=${year}` : '';
+    return this.http.get(`/api/v1/tax/positions${params}`);
+  }
+
+  public fetchTaxExportCsv(year?: number) {
+    const params = year ? `?year=${year}` : '';
+    return this.http.get(`/api/v1/tax/export/csv${params}`, {
+      responseType: 'blob'
+    });
+  }
+
+  public fetchTaxExport(year?: number) {
+    const params = year ? `?year=${year}` : '';
+    return this.http.get(`/api/v1/tax/export${params}`);
+  }
+
   public fetchSubnets() {
     return this.http.get('/api/v1/subnet-analytics/subnets');
   }

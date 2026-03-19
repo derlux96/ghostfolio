@@ -165,6 +165,11 @@ export const internalRoutes: Record<string, InternalRoute> = {
     routerLink: ['/dividend'],
     title: $localize`Dividend Dashboard`
   },
+  tax: {
+    path: 'tax',
+    routerLink: ['/tax'],
+    title: $localize`Tax Reporting`
+  },
   subnetAnalytics: {
     path: 'subnet-analytics',
     routerLink: ['/subnet-analytics'],

@@ -1,0 +1,298 @@
+<div class="tax-container">
+  <!-- Header -->
+  <div class="page-header">
+    <h1>German Tax Reporting</h1>
+    <div class="header-actions">
+      <mat-form-field appearance="outline" class="year-selector">
+        <mat-label>Tax Year</mat-label>
+        <mat-select [(ngModel)]="selectedYear" (selectionChange)="onYearChange()">
+          @for (year of availableYears; track year) {
+            <mat-option [value]="year">{{ year }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="exportCsv()">
+        <mat-icon>download</mat-icon>
+        Export CSV
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <!-- Summary Cards -->
+  @if (!isLoading && summary) {
+    <div class="summary-cards">
+      <!-- Dividend Card -->
+      <mat-card class="summary-card">
+        <mat-card-content>
+          <div class="summary-header">
+            <mat-icon class="summary-icon">account_balance_wallet</mat-icon>
+            <div class="summary-label">Dividends</div>
+          </div>
+          <div class="summary-amounts">
+            <div class="summary-row">
+              <span class="label">Total</span>
+              <span class="value">{{
+                summary.dividends.total | currency: 'EUR' : 'symbol' : '1.2-2'
+              }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="label">Tax</span>
+              <span class="value tax">{{
+                summary.dividends.tax | currency: 'EUR' : 'symbol' : '1.2-2'
+              }}</span>
+            </div>
+            <div class="summary-row highlight">
+              <span class="label">Teilfreistellung</span>
+              <span class="value positive">{{
+                summary.dividends.teilfreistellung | currency: 'EUR' : 'symbol' : '1.2-2'
+              }}</span>
+            </div>
+          </div>
+          <div class="summary-count">{{ summary.dividends.count }} dividends</div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Sales Card -->
+      <mat-card class="summary-card">
+        <mat-card-content>
+          <div class="summary-header">
+            <mat-icon class="summary-icon">trending_up</mat-icon>
+            <div class="summary-label">Capital Gains</div>
+          </div>
+          <div class="summary-amounts">
+            <div class="summary-row">
+              <span class="label">Total Gains</span>
+              <span class="value">{{
+                summary.sales.totalGains | currency: 'EUR' : 'symbol' : '1.2-2'
+              }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="label">Tax</span>
+              <span class="value tax">{{
+                summary.sales.tax | currency: 'EUR' : 'symbol' : '1.2-2'
+              }}</span>
+            </div>
+            <div class="summary-row highlight">
+              <span class="label">Tax-Free</span>
+              <span class="value positive">{{
+                summary.sales.taxFreeGains | currency: 'EUR' : 'symbol' : '1.2-2'
+              }}</span>
+            </div>
+          </div>
+          <div class="summary-count">{{ summary.sales.count }} sales</div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Vorabpauschale Card -->
+      <mat-card class="summary-card">
+        <mat-card-content>
+          <div class="summary-header">
+            <mat-icon class="summary-icon">schedule</mat-icon>
+            <div class="summary-label">Vorabpauschale</div>
+          </div>
+          <div class="summary-amounts">
+            <div class="summary-row">
+              <span class="label">Total</span>
+              <span class="value">{{
+                summary.vorabpauschale.total | currency: 'EUR' : 'symbol' : '1.2-2'
+              }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="label">Tax</span>
+              <span class="value tax">{{
+                summary.vorabpauschale.tax | currency: 'EUR' : 'symbol' : '1.2-2'
+              }}</span>
+            </div>
+          </div>
+          <div class="summary-count">{{ summary.vorabpauschale.count }} entries</div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Total Tax Card -->
+      <mat-card class="summary-card total-card">
+        <mat-card-content>
+          <div class="summary-header">
+            <mat-icon class="summary-icon">receipt</mat-icon>
+            <div class="summary-label">Total Tax</div>
+          </div>
+          <div class="summary-total">
+            <span class="total-value">{{
+              summary.total.tax | currency: 'EUR' : 'symbol' : '1.2-2'
+            }}</span>
+          </div>
+          <div class="summary-row secondary">
+            <span class="label">Total Teilfreistellung</span>
+            <span class="value positive">{{
+              summary.total.teilfreistellung | currency: 'EUR' : 'symbol' : '1.2-2'
+            }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  }
+
+  <!-- Dividends Table -->
+  @if (!isLoading && allDividends.length > 0) {
+    <mat-card class="table-card">
+      <mat-card-header>
+        <mat-card-title>Dividend Tax Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table class="tax-table" mat-table [dataSource]="allDividends">
+          <ng-container matColumnDef="symbol">
+            <th *matHeaderCellDef mat-header-cell>Symbol</th>
+            <td *matCellDef="let element" mat-cell>
+              <strong>{{ element.symbol }}</strong
+              ><br />
+              <small class="text-muted">{{ element.name }}</small>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th *matHeaderCellDef mat-header-cell>Date</th>
+            <td *matCellDef="let element" mat-cell>{{ formatDate(element.date) }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="amount">
+            <th *matHeaderCellDef mat-header-cell class="text-right">Amount</th>
+            <td *matCellDef="let element" mat-cell class="text-right">
+              {{ formatCurrency(element.amount) }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="teilfreistellung">
+            <th *matHeaderCellDef mat-header-cell class="text-right">
+              Teilfreistellung
+            </th>
+            <td *matCellDef="let element" mat-cell class="text-right positive">
+              {{ formatCurrency(element.teilfreistellung) }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="taxableAmount">
+            <th *matHeaderCellDef mat-header-cell class="text-right">Taxable</th>
+            <td *matCellDef="let element" mat-cell class="text-right">
+              {{ formatCurrency(element.taxableAmount) }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="abgeltungsteuer">
+            <th *matHeaderCellDef mat-header-cell class="text-right">Abgeltungsteuer</th>
+            <td *matCellDef="let element" mat-cell class="text-right tax">
+              {{ formatCurrency(element.abgeltungsteuer) }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalTax">
+            <th *matHeaderCellDef mat-header-cell class="text-right">Total Tax</th>
+            <td *matCellDef="let element" mat-cell class="text-right tax">
+              <strong>{{ formatCurrency(element.totalTax) }}</strong>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  <!-- Sales Table -->
+  @if (!isLoading && allSales.length > 0) {
+    <mat-card class="table-card">
+      <mat-card-header>
+        <mat-card-title>Capital Gains Tax Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table class="tax-table" mat-table [dataSource]="allSales">
+          <ng-container matColumnDef="symbol">
+            <th *matHeaderCellDef mat-header-cell>Symbol</th>
+            <td *matCellDef="let element" mat-cell>
+              <strong>{{ element.symbol }}</strong
+              ><br />
+              <small class="text-muted">{{ element.name }}</small>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th *matHeaderCellDef mat-header-cell>Date</th>
+            <td *matCellDef="let element" mat-cell>{{ formatDate(element.date) }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="gain">
+            <th *matHeaderCellDef mat-header-cell class="text-right">Gain/Loss</th>
+            <td *matCellDef="let element" mat-cell class="text-right">
+              @if (element.gain >= 0) {
+                <span class="positive">{{ formatCurrency(element.gain) }}</span>
+              } @else {
+                <span class="negative">{{ formatCurrency(element.gain) }}</span>
+              }
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="isTaxFree">
+            <th *matHeaderCellDef mat-header-cell class="text-center">Tax-Free</th>
+            <td *matCellDef="let element" mat-cell class="text-center">
+              @if (element.isTaxFree) {
+                <mat-icon class="icon-success">check_circle</mat-icon>
+              } @else {
+                <mat-icon class="icon-muted">cancel</mat-icon>
+              }
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="teilfreistellung">
+            <th *matHeaderCellDef mat-header-cell class="text-right">
+              Teilfreistellung
+            </th>
+            <td *matCellDef="let element" mat-cell class="text-right positive">
+              {{ formatCurrency(element.teilfreistellung) }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="taxableGain">
+            <th *matHeaderCellDef mat-header-cell class="text-right">Taxable</th>
+            <td *matCellDef="let element" mat-cell class="text-right">
+              {{ formatCurrency(element.taxableGain) }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="abgeltungsteuer">
+            <th *matHeaderCellDef mat-header-cell class="text-right">Abgeltungsteuer</th>
+            <td *matCellDef="let element" mat-cell class="text-right tax">
+              {{ formatCurrency(element.abgeltungsteuer) }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalTax">
+            <th *matHeaderCellDef mat-header-cell class="text-right">Total Tax</th>
+            <td *matCellDef="let element" mat-cell class="text-right tax">
+              <strong>{{ formatCurrency(element.totalTax) }}</strong>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="saleDisplayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: saleDisplayedColumns"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  <!-- Empty State -->
+  @if (!isLoading && allDividends.length === 0 && allSales.length === 0) {
+    <mat-card class="empty-state">
+      <mat-card-content class="text-center py-5">
+        <mat-icon class="empty-icon">description</mat-icon>
+        <h3>No Tax Data Available</h3>
+        <p class="text-muted">
+          No dividend or sale transactions found for {{ selectedYear }}.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>
